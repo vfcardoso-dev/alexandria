@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <mat-card class="login-box">
+        <span class="app-name">Alexandria</span>
+        <span class="box-name">Sign-in</span>
+        
+        <form [formGroup]="form">
+            <mat-form-field>
+                <mat-label for="username">Usuário</mat-label>
+                <input matInput formControlName="username" placeholder="email@site.com">
+                <mat-error *ngIf="form.get('username')?.hasError('email')">Insira um e-mail válido</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="password">Senha</mat-label>
+                <input matInput formControlName="password" type="password">
+            </mat-form-field>
+        </form>
+
+        <button mat-flat-button color="primary" [disabled]="form.invalid">Entrar</button>
+    </mat-card>
+</div>
