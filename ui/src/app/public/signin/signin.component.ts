@@ -1,5 +1,7 @@
+import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { environment } from "src/environments/environment";
 
 export interface LoginForm { username: FormControl<string | null>, password: FormControl<string | null> }
 
@@ -15,5 +17,13 @@ export class SigninComponent {
         password: new FormControl('')
     })
 
-    constructor(){}
+    constructor(private http: HttpClient){}
+
+    public signin = () => {
+        const username = this.form.get('username')?.value;
+        const password = this.form.get('password')?.value;
+
+        this.http.post(`${environment.apiUrl}/authenticate`, { username: username, password: password }).
+            subscribe((token)=>console.log(token));
+    }
 }

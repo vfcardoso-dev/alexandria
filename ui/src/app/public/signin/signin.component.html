@@ -15,6 +15,6 @@
             </mat-form-field>
         </form>
 
-        <button mat-flat-button color="primary" [disabled]="form.invalid">Entrar</button>
+        <button mat-flat-button color="primary" (click)="signin()" [disabled]="form.invalid">Entrar</button>
     </mat-card>
 </div>
