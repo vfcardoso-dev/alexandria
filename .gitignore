@@ -3,8 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!**/src/main/resources/application-panda.properties
-!**/src/main/resources/application-pona.properties
+src/main/resources/application-panda.properties
+src/main/resources/application-pona.properties
 
 ### STS ###
 .apt_generated

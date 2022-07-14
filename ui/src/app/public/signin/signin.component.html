@@ -6,8 +6,8 @@
         <form [formGroup]="form">
             <mat-form-field>
                 <mat-label for="username">Usuário</mat-label>
-                <input matInput formControlName="username" placeholder="email@site.com">
-                <mat-error *ngIf="form.get('username')?.hasError('email')">Insira um e-mail válido</mat-error>
+                <input matInput formControlName="username" placeholder="Usuário">
+                <mat-error *ngIf="form.get('username')?.hasError('minlength')">Insira nome de usuário</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <mat-label for="password">Senha</mat-label>

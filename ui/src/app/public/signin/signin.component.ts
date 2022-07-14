@@ -12,8 +12,8 @@ export interface LoginForm { username: FormControl<string | null>, password: For
 })
 export class SigninComponent {
 
-    public form: FormGroup = new FormGroup<LoginForm>({
-        username: new FormControl('', [Validators.email]),
+    public form: FormGroup = new FormGroup<LoginForm>({        
+        username: new FormControl('', [Validators.required,Validators.minLength(4)]),
         password: new FormControl('')
     })
 
@@ -21,7 +21,7 @@ export class SigninComponent {
 
     public signin = () => {
         const username = this.form.get('username')?.value;
-        const password = this.form.get('password')?.value;
+        const password = this.form.get('password')?.value;        
 
         this.http.post(`${environment.apiUrl}/authenticate`, { username: username, password: password }).
             subscribe((token)=>console.log(token));

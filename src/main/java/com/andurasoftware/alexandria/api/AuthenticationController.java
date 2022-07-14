@@ -1,5 +1,6 @@
 package com.andurasoftware.alexandria.api;
 
+import com.andurasoftware.alexandria.business.repositories.base.UserRepository;
 import com.andurasoftware.alexandria.model.valueobjects.JwtRequest;
 import com.andurasoftware.alexandria.model.valueobjects.JwtResponse;
 import com.andurasoftware.alexandria.services.JwtTokenUtil;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +24,7 @@ public class AuthenticationController {
     @Autowired private AuthenticationManager authenticationManager;
     @Autowired private JwtTokenUtil jwtTokenUtil;
     @Autowired private JwtUserDetailsService userDetailsService;
+
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> authenticate(@RequestBody JwtRequest authenticationRequest) throws Exception {
@@ -38,7 +41,8 @@ public class AuthenticationController {
 
     private void authenticate(String username, String password) throws Exception {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+            authenticationManager.authenticate(token);
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
