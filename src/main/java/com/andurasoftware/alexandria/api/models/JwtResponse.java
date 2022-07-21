@@ -1,4 +1,4 @@
-package com.andurasoftware.alexandria.model.valueobjects;
+package com.andurasoftware.alexandria.api.models;
 
 import java.io.Serial;
 import java.io.Serializable;

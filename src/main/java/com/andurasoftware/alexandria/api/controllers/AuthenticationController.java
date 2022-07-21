@@ -1,10 +1,9 @@
-package com.andurasoftware.alexandria.api;
+package com.andurasoftware.alexandria.api.controllers;
 
-import com.andurasoftware.alexandria.business.repositories.base.UserRepository;
-import com.andurasoftware.alexandria.model.valueobjects.JwtRequest;
-import com.andurasoftware.alexandria.model.valueobjects.JwtResponse;
-import com.andurasoftware.alexandria.services.JwtTokenUtil;
-import com.andurasoftware.alexandria.services.JwtUserDetailsService;
+import com.andurasoftware.alexandria.api.models.JwtRequest;
+import com.andurasoftware.alexandria.api.models.JwtResponse;
+import com.andurasoftware.alexandria.business.infra.jwt.helpers.JwtTokenUtil;
+import com.andurasoftware.alexandria.business.infra.jwt.services.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,7 +11,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,10 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthenticationController {
 
-    @Autowired private AuthenticationManager authenticationManager;
-    @Autowired private JwtTokenUtil jwtTokenUtil;
-    @Autowired private JwtUserDetailsService userDetailsService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtil jwtTokenUtil;
+    private final JwtUserDetailsService userDetailsService;
 
+    @Autowired
+    public AuthenticationController(
+            AuthenticationManager authenticationManager,
+            JwtTokenUtil jwtTokenUtil,
+            JwtUserDetailsService userDetailsService) {
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.userDetailsService = userDetailsService;
+    }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> authenticate(@RequestBody JwtRequest authenticationRequest) throws Exception {

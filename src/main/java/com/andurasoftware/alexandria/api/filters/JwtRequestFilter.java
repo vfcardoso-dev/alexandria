@@ -1,7 +1,7 @@
-package com.andurasoftware.alexandria.config;
+package com.andurasoftware.alexandria.api.filters;
 
-import com.andurasoftware.alexandria.services.JwtTokenUtil;
-import com.andurasoftware.alexandria.services.JwtUserDetailsService;
+import com.andurasoftware.alexandria.business.infra.jwt.helpers.JwtTokenUtil;
+import com.andurasoftware.alexandria.business.infra.jwt.services.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

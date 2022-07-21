@@ -1,9 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "src/app/shared/services/app.auth";
 import { environment } from "src/environments/environment";
 
-export interface LoginForm { username: FormControl<string | null>, password: FormControl<string | null> }
+export interface LoginForm { email: FormControl<string | null>, password: FormControl<string | null> }
 
 @Component({
     selector: 'signin',
@@ -13,17 +15,19 @@ export interface LoginForm { username: FormControl<string | null>, password: For
 export class SigninComponent {
 
     public form: FormGroup = new FormGroup<LoginForm>({        
-        username: new FormControl('', [Validators.required,Validators.minLength(4)]),
+        email: new FormControl('', [Validators.required,Validators.email]),
         password: new FormControl('')
     })
 
-    constructor(private http: HttpClient){}
+    constructor(private auth: AuthService, private router: Router){}
 
     public signin = () => {
-        const username = this.form.get('username')?.value;
+        const email = this.form.get('email')?.value;
         const password = this.form.get('password')?.value;        
 
-        this.http.post(`${environment.apiUrl}/authenticate`, { username: username, password: password }).
-            subscribe((token)=>console.log(token));
+        this.auth.login(email, password).subscribe((token) => {
+            console.log(token);
+            this.router.navigateByUrl('/main')
+        });
     }
 }

@@ -1,4 +1,4 @@
-package com.andurasoftware.alexandria.config;
+package com.andurasoftware.alexandria.api.filters;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

@@ -1,20 +1,20 @@
-package com.andurasoftware.alexandria.business.models;
+package com.andurasoftware.alexandria.business.security.write.states;
 
-import com.andurasoftware.alexandria.business.valueobjects.SecurityRole;
+import com.andurasoftware.alexandria.business.security.shared.valueobjects.SecurityRole;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
+
 import static javax.persistence.EnumType.STRING;
 
 @Entity
 @Table(name="[user]")
-public class User {
+public class UserState {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    @Column(unique = true, nullable = false)
-    private String username;
+    private UUID id;
 
     @Column(nullable = false)
     private String password;
@@ -22,7 +22,7 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -30,25 +30,20 @@ public class User {
     private SecurityRole role;
 
     @Column(nullable = false)
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
     @Column(nullable = false)
-    private Date dateCreate = new Date();
+    private Date createdAt;
 
-    public long getId() {
+    @Version()
+    private Date version;
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -91,11 +86,19 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Date getDateCreate() {
-        return dateCreate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDateCreate(Date dateCreate) {
-        this.dateCreate = dateCreate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getVersion() {
+        return version;
+    }
+
+    public void setVersion(Date version) {
+        this.version = version;
     }
 }

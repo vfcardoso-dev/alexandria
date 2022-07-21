@@ -1,4 +1,4 @@
-package com.andurasoftware.alexandria.model.valueobjects;
+package com.andurasoftware.alexandria.api.models;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -20,7 +20,7 @@ public class JwtRequest implements Serializable {
     }
 
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
     public void setUsername(String username) {
@@ -28,7 +28,7 @@ public class JwtRequest implements Serializable {
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
