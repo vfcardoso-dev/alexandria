@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { InvalidAuthInterceptor } from './shared/interceptors/invalid-auth.interceptor';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { PrivateGuard } from './shared/guards/private.guard';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TokenInterceptor } from './shared/interceptors/token.interceptor';
     MaterialModule,
   ],
   providers: [
+    PrivateGuard,
     { provide: HTTP_INTERCEPTORS, useClass: InvalidAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],

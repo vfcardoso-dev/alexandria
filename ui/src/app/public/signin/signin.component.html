@@ -1,20 +1,24 @@
 <div class="wrapper">
-    <mat-card class="login-box">
-        <span class="app-name">Alexandria</span>
-        <span class="box-name">Sign-in</span>
-        
-        <form [formGroup]="form">
-            <mat-form-field>
-                <mat-label for="username">E-mail</mat-label>
-                <input matInput formControlName="email" placeholder="E-mail" type="email">
-                <mat-error *ngIf="form.get('email')?.hasError('minlength')">Insira seu e-mail</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label for="password">Senha</mat-label>
-                <input matInput formControlName="password" type="password">
-            </mat-form-field>
-        </form>
-
-        <button mat-flat-button color="primary" (click)="signin()" [disabled]="form.invalid">Entrar</button>
-    </mat-card>
+    <ng-container *ngIf="!loaded">Loading...</ng-container>
+    
+    <ng-container *ngIf="loaded">
+        <mat-card class="login-box">
+            <span class="app-name">Alexandria</span>
+            <span class="box-name">Sign-in</span>
+            
+            <form [formGroup]="form">
+                <mat-form-field>
+                    <mat-label for="username">E-mail</mat-label>
+                    <input matInput formControlName="email" placeholder="E-mail" type="email">
+                    <mat-error *ngIf="form.get('email')?.hasError('minlength')">Insira seu e-mail</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label for="password">Senha</mat-label>
+                    <input matInput formControlName="password" type="password">
+                </mat-form-field>
+            </form>
+    
+            <button mat-flat-button color="primary" (click)="signin()" [disabled]="form.invalid">Entrar</button>
+        </mat-card>
+    </ng-container>
 </div>

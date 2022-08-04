@@ -1,5 +1,6 @@
 package com.andurasoftware.alexandria.business.security.read.models;
 
+import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import com.andurasoftware.alexandria.business.security.shared.valueobjects.SecurityRole;
 import org.springframework.data.annotation.Immutable;
 
@@ -12,7 +13,7 @@ import static javax.persistence.EnumType.STRING;
 @Immutable
 @Entity
 @Table(name="[user]")
-public class UserModel {
+public class UserModel implements Model {
 
     @Id
     private UUID id;
@@ -36,10 +37,12 @@ public class UserModel {
     @Column
     private Date createdAt;
 
+    @Override
     public UUID getId() {
         return id;
     }
 
+    @Override
     public void setId(UUID id) {
         this.id = id;
     }

@@ -23,10 +23,10 @@ export class AuthService {
         return of();
     }
 
-    public isAuthenticated = (): boolean => Boolean(localStorage.getItem("token"));
+    public isAuthenticated = (): boolean => localStorage.getItem("token") !== null;
 
-    public getToken = (): IToken => {
+    public getToken = (): string | null => {
         const token = localStorage.getItem("token");
-        return token ? JSON.parse(token) : undefined;
+        return token ? (<IToken>JSON.parse(token)).token : null;
     }
 }

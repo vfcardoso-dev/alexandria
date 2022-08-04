@@ -1,5 +1,6 @@
 package com.andurasoftware.alexandria.business.security.write.states;
 
+import com.andurasoftware.alexandria.business.common.interfaces.State;
 import com.andurasoftware.alexandria.business.security.shared.valueobjects.SecurityRole;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import static javax.persistence.EnumType.STRING;
 
 @Entity
 @Table(name="[user]")
-public class UserState {
+public class UserState implements State {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +37,7 @@ public class UserState {
     private Date createdAt;
 
     @Version()
-    private Date version;
+    protected Date version;
 
     public UUID getId() {
         return id;
