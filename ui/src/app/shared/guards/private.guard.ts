@@ -9,7 +9,9 @@ export class PrivateGuard implements CanActivate {
     constructor(private auth: AuthService, private router: Router){}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        return this.auth.isAuthenticated()?true:this.router.parseUrl('/signin');
+        return this.auth.isAuthenticated()
+            ? true
+            : this.router.parseUrl('/signin');
     }
 
 }

@@ -6,7 +6,7 @@ import { MainComponent } from './main/main.component';
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
     { path: 'main', component: MainComponent },
-    { path: 'logout', component:LogoutComponent }
+    { path: 'logout', component: LogoutComponent }
 ];
 
 @NgModule({
