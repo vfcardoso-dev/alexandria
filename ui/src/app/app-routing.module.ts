@@ -6,7 +6,7 @@ import { PrivateGuard } from './shared/guards/private.guard';
 
 const routes: Routes = [
     { path: '', component: PublicRootComponent, loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
-    { path: 'app', canActivate: [PrivateGuard], component: PrivateRootComponent, loadChildren: () => import('./private/private.module').then(m => m.PrivateModule) },
+    { path: 'app', canActivate: [PrivateGuard], component: PrivateRootComponent, loadChildren: () => import('./private/private.module').then(m => m.PrivateModule) }
 ];
 
 @NgModule({

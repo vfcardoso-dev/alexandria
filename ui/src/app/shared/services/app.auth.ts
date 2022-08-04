@@ -18,9 +18,9 @@ export class AuthService {
             }));
     }
 
-    public logout = (): Observable<void> => {
+    public logout = (): Observable<any> => {
         localStorage.removeItem("token");
-        return of();
+        return of(null);
     }
 
     public isAuthenticated = (): boolean => localStorage.getItem("token") !== null;

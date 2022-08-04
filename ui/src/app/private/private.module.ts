@@ -5,11 +5,13 @@ import { CommonModule } from "@angular/common";
 import { PrivateRootComponent } from "./private.component";
 import { MainComponent } from "./main/main.component";
 import { PrivateRoutingModule } from "./private-routing.module";
+import { LogoutComponent } from "./logout/logout.component";
 
 @NgModule({
     declarations: [
         PrivateRootComponent,
-        MainComponent
+        MainComponent,
+        LogoutComponent
     ],
     imports: [
         CommonModule,
