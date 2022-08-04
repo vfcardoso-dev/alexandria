@@ -16,7 +16,7 @@ export class InvalidAuthInterceptor implements HttpInterceptor {
                 // handle only 401 error
                 if (error instanceof HttpErrorResponse && error.status === 401) {
                     this.auth.logout()
-                        .subscribe(() => this.router.navigateByUrl('/login'));
+                        .subscribe(() => this.router.navigateByUrl('/signin'));
                     
                     return throwError(() => error);
                 }
