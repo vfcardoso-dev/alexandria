@@ -1,4 +1,4 @@
-package com.andurasoftware.alexandria.api.models.controllers;
+package com.andurasoftware.alexandria.api.controllers;
 
 import com.andurasoftware.alexandria.api.models.JwtRequest;
 import com.andurasoftware.alexandria.api.models.JwtResponse;

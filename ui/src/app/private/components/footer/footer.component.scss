@@ -1,0 +1,11 @@
+:host {
+    .footer-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+        background-color: #ebebeb;
+        padding: 0 30px;
+    }
+}

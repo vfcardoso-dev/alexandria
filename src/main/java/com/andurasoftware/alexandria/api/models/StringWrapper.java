@@ -1,4 +1,4 @@
-package com.andurasoftware.alexandria.business.infra.wrappers;
+package com.andurasoftware.alexandria.api.models;
 
 public class StringWrapper {
 

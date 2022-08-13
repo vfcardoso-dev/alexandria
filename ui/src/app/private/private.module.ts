@@ -3,14 +3,18 @@ import { MaterialModule } from "../shared/material.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { PrivateRootComponent } from "./private.component";
-import { MainComponent } from "./main/main.component";
 import { PrivateRoutingModule } from "./private-routing.module";
-import { LogoutComponent } from "./logout/logout.component";
+import { MainComponent } from "./components/main/main.component";
+import { LogoutComponent } from "./components/logout/logout.component";
+import { FooterComponent } from "./components/footer/footer.component";
+import { HeaderComponent } from "./components/header/header.component";
 
 @NgModule({
     declarations: [
         PrivateRootComponent,
         MainComponent,
+        HeaderComponent,
+        FooterComponent,
         LogoutComponent
     ],
     imports: [
