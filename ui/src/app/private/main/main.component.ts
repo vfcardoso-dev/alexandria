@@ -7,14 +7,24 @@ import { environment } from "src/environments/environment";
     selector: 'main',
     template: `<p>Logado!</p><br>
                <button mat-flat-button color="primary" (click)="test()">Teste</button>     
-               <button mat-flat-button (click)="logout()">Logout</button>`
+               <button mat-flat-button (click)="logout()">Logout</button><br/>
+               <span [innerText]="message"><br/></span><button mat-flat-button (click)="limpar()">Limpar</button>`
 })
 export class MainComponent {
 
-    constructor(private http: HttpClient, private router:Router){}
+    message:  string = "";
+    
+    constructor(private http: HttpClient, private router:Router){}    
     
     public test = () => {
-        this.http.get(`${environment.apiUrl}/api/test`).subscribe(res => console.log(res));
+        this.http.get(`${environment.apiUrl}/api/test`)
+        .subscribe(res =>{                                      
+            this.message = JSON.parse(JSON.stringify(res)).message;        
+        });
+    }
+
+    public limpar = () => {
+        this.message = "";
     }
 
     public logout = () => {
