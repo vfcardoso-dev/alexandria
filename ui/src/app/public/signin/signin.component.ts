@@ -18,8 +18,8 @@ export class SigninComponent implements OnInit {
     public loaded: boolean = false;
 
     public form: FormGroup = new FormGroup<LoginForm>({        
-        email: new FormControl('', [Validators.required,Validators.email]),
-        password: new FormControl('')
+        email: new FormControl('admin@vfcardoso.dev', [Validators.required,Validators.email]),
+        password: new FormControl('admin')
     })
 
     constructor(private auth: AuthService, private router: Router){}

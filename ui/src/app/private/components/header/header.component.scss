@@ -6,12 +6,35 @@
         justify-content: space-between;
         height: 40px;
         background-color: #C9AD64;
+        color: #fff;
         padding: 0 30px;
 
         h1 {
             margin: 0;
             font-weight: 500;
-            color: #fff;
+            cursor:pointer;            
+        }
+
+        nav {            
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            
+
+            a {
+                cursor: pointer;
+                font-weight: 500;
+                height: 40px;
+                line-height: 40px;
+                display: block; 
+                padding: 0 15px;
+
+                &:hover {
+                   background-color: #00000014;                                        
+                }
+            }
         }
     }
 }

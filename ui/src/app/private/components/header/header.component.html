@@ -1,23 +1,23 @@
 <div class="header-wrapper">
-    <h1>Alexandria</h1>
+    <h1 routerLink="/app/main">Alexandria</h1>
 
     <nav>
-        <button mat-button [matMenuTriggerFor]="biblioteca">Biblioteca</button>
+        <a [matMenuTriggerFor]="biblioteca">Biblioteca</a>
         <mat-menu #biblioteca="matMenu">
-            <button mat-menu-item>Autores</button>
+            <button mat-menu-item routerLink="/app/biblioteca/autores">Autores</button>
             <button mat-menu-item>Obras</button>
             <button mat-menu-item>Exemplares</button>
             <button mat-menu-item>Membros</button>
             <button mat-menu-item>Empréstimos</button>
         </mat-menu>
     
-        <button mat-button [matMenuTriggerFor]="financeiro">Financeiro</button>
+        <a [matMenuTriggerFor]="financeiro">Financeiro</a>
         <mat-menu #financeiro="matMenu">
             <button mat-menu-item>Pagamentos</button>
             <button mat-menu-item>Mensalidades</button>
         </mat-menu>
     
-        <button mat-button [matMenuTriggerFor]="seguranca">Segurança</button>
+        <a [matMenuTriggerFor]="seguranca">Segurança</a>
         <mat-menu #seguranca="matMenu">
             <button mat-menu-item>Usuários</button>
             <button mat-menu-item>Sessões ativas</button>
