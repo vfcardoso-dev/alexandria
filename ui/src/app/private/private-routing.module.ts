@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AutorListComponent } from './components/autores/autores.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { MainComponent } from './components/main/main.component';
+import { UsuarioListComponent } from './components/usuarios/usuarios.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
     { path: 'main', component: MainComponent },
     { path: 'biblioteca/autores', component: AutorListComponent },
+    { path: 'seguranca/usuarios', component: UsuarioListComponent },
     { path: 'logout', component: LogoutComponent }
 ];
 
