@@ -1,5 +1,10 @@
-:host {
+:host {    
     table {
         width: 100%;
-      }    
+    }
+    
+    .buttons{
+      margin:10px;
+      float:right;
+    }
 }
