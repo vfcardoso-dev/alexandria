@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 
 export interface Usuario {
@@ -11,9 +12,16 @@ export interface Usuario {
     role: string;
   }
 
-  const ELEMENT_DATA: Usuario[] = [
-    {id: '0xFD9E9F8AC7CD4827853BCC8F94A15A81[...]', createdAt: '2022-07-23 12:19:07.9090000', email: 'admin@vfcardoso.dev', name:'Alexandria Sysadmin', role: 'ADMIN'},
-  ];
+export interface UserModel {
+  id:string;
+  password:string;
+  name:string;
+  email:string;
+  role:string;
+  enabled:boolean;
+  createdAt:string;
+}
+  
 
 @Component({
     selector: 'usuarios',
@@ -21,11 +29,39 @@ export interface Usuario {
     styleUrls: ['./usuarios.component.scss'],
 })
 
+
+
 export class UsuarioListComponent{
 
     constructor(private http: HttpClient, private router:Router){}
 
+    
+    userData: Usuario[] = [
+      //{id: '0xFD9E9F8AC7CD4827853BCC8F94A15A81[...]', createdAt: '2022-07-23 12:19:07.9090000', email: 'admin@vfcardoso.dev', name:'Alexandria Sysadmin', role: 'ADMIN'},
+    ];
+
     displayedColumns: string[] = ['id', 'createdAt', 'email', 'name','role'];
-    dataSource = ELEMENT_DATA;
+    dataSource = this.userData;
+          
+        
+    public loadData = () => {
+
+      this.http.post<UserModel[]>(`${environment.apiUrl}/api/user/list-all`, {  }).subscribe(data => {                              
+              
+
+        var us:Usuario[] = [];
+
+        data.forEach(function(user){
+            us.push({id:user.id,createdAt:user.createdAt,email:user.email,name:user.name,role:user.role});
+        });
+        
+        this.userData = us;
+      });
+      
+    }
+    
+    ngOnInit() {        
+      this.loadData();                  
+  }
     
 }

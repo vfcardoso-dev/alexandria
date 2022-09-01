@@ -14,4 +14,6 @@ export class MainComponent {
     public logout = () => {
         this.router.navigateByUrl('/app/logout');   
     }
+
+
 }
