@@ -11,4 +11,5 @@ public interface UserReadRepository extends Repository<UserModel, UUID> {
     Optional<UserModel> findById(UUID id);
     Optional<UserModel> findByEmail(String email);
     List<UserModel> findAll();
+
 }

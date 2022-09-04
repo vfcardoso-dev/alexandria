@@ -2,7 +2,6 @@ package com.andurasoftware.alexandria.business.security.read.repositories.impl;
 
 import com.andurasoftware.alexandria.business.security.read.models.UserModel;
 import com.andurasoftware.alexandria.business.security.read.repositories.base.UserReadRepository;
-import com.andurasoftware.alexandria.business.security.write.states.UserState;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,4 +30,5 @@ public class UserReadRepositoryImpl implements UserReadRepository {
         List<UserModel> userModelList = this.em.createQuery("select u from UserModel u",UserModel.class).getResultList();
         return userModelList;
     }
+
 }
