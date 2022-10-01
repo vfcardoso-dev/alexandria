@@ -5,14 +5,16 @@
   <button mat-flat-button color="primary">Novo</button>
 </div>
 
-<table mat-table [dataSource]="userData" class="mat-elevation-z8">
+<div class="example-container mat-elevation-z8">
+
+  <table mat-table [dataSource]="userData" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> id </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>      
     <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef> Dt. Criação </th>
-      <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt | date: "dd/MM/yyyy"}} </td>
     </ng-container>      
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef> E-mail </th>
@@ -30,3 +32,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <!--<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
+
+</div>
