@@ -13,13 +13,11 @@ export interface UserGridModel {
     enabled:boolean;
   }
   
-
 @Component({
     selector: 'usuarios',
     templateUrl: './usuarios.component.html',
     styleUrls: ['./usuarios.component.scss'],
 })
-
 
 
 export class UsuarioListComponent{
@@ -35,7 +33,6 @@ export class UsuarioListComponent{
     dataSource = this.userData;
           
      
-    
     public loadDisplayData = () => {
 
       this.http.post<UserGridModel[]>(`${environment.apiUrl}/api/user/grid/list.json`, {  }).subscribe(data => {                                              
@@ -44,34 +41,6 @@ export class UsuarioListComponent{
       
     }
 
-     
-    
-    /*
-    public loadData = () => {
-
-      this.http.post<UserModel[]>(`${environment.apiUrl}/api/user/list-all`, {  }).subscribe(data => {                              
-              
-
-        var us:Usuario[] = [];
-
-        data.forEach(function(user){
-            us.push(
-              { 
-                id:user.id,
-                createdAt:user.createdAt,
-                email:user.email,
-                name:user.name,
-                role:user.role,
-                enabled:false
-              });
-        });
-        
-        this.userData = us;
-      });
-      
-    }
-    */
-    
     ngOnInit() {        
       this.loadDisplayData();                  
   }

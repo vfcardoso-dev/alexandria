@@ -10,6 +10,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { AutorListComponent } from "./components/autores/autores.component";
 import { UsuarioListComponent } from "./components/usuarios/usuarios.component";
+import { UsuarioCreateComponent } from "./components/usuario-create/usuario-create.component";
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { UsuarioListComponent } from "./components/usuarios/usuarios.component";
         FooterComponent,
         LogoutComponent,
         AutorListComponent,
-        UsuarioListComponent
+        UsuarioListComponent,
+        UsuarioCreateComponent
     ],
     imports: [
         CommonModule,
