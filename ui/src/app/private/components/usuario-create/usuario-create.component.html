@@ -6,5 +6,38 @@
 </div>
 
 <div class="example-container mat-elevation-z8">
-    <p>Formulário Aqui</p> 
+  <div style="padding:10px;">   
+    <form [formGroup]="form">
+      <p>
+        <mat-form-field>
+            <mat-label for="name">Nome</mat-label>
+            <input matInput formControlName="name" placeholder="Nome" type="text">
+            <mat-error *ngIf="form.get('nome')?.hasError('minlength')">Insira o nome</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <mat-label for="email">E-mail</mat-label>
+            <input matInput formControlName="email" placeholder="E-mail" type="email">
+            <mat-error *ngIf="form.get('email')?.hasError('minlength')">Insira o e-mail</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <mat-label for="password">Senha</mat-label>
+            <input matInput formControlName="password" placeholder="Senha" type="password">
+            <mat-error *ngIf="form.get('password')?.hasError('minlength')">Insira uma senha</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <button mat-flat-button 
+                color="primary" 
+                (click)="submit()" 
+                [disabled]="form.invalid" 
+                type="submit">Salvar
+        </button>
+      </p>    
+  </form>
+  
+  </div>
 </div>

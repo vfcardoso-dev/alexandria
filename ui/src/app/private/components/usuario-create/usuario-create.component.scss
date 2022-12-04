@@ -8,6 +8,10 @@
     float:right;
   }
 
+  .mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+
   @media screen and (max-width: 960px) {
     table {
       border: 0;
