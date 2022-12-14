@@ -4,6 +4,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { environment } from "src/environments/environment";
+import { map } from "rxjs";
 
 
 export interface UserForm { 
@@ -31,13 +33,32 @@ export class UsuarioCreateComponent{
         email: new FormControl('', [Validators.required,Validators.email]),
         password: new FormControl('',[Validators.required])
     })
+
+    //https://www.pluralsight.com/guides/how-to-submit-form-data-using-angular
     
     
     constructor(private http: HttpClient, private router:Router){}
 
     public submit = () => {
+        const name = this.form.get('name')?.value;
         const email = this.form.get('email')?.value;
-                 
+        const password = this.form.get('password')?.value;
+        console.log(name); 
+        console.log(email); 
+        console.log(password); 
+
+
+        const lool = this.http.post(`${environment.apiUrl}/user/add`, 
+            { 
+                name: name, 
+                email: email,
+                password :password
+             })
+            .pipe(map(data => {
+               console.log(data);
+            }));
+            
+        console.log(lool);    
     }
     
 }
