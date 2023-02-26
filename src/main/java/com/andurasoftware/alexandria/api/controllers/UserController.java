@@ -4,6 +4,8 @@ import com.andurasoftware.alexandria.business.security.read.models.UserGridModel
 import com.andurasoftware.alexandria.business.security.read.models.UserModel;
 import com.andurasoftware.alexandria.business.security.read.repositories.base.UserGridReadRepository;
 import com.andurasoftware.alexandria.business.security.read.repositories.base.UserReadRepository;
+import com.andurasoftware.alexandria.business.security.write.aggregates.UserAggregate;
+import com.andurasoftware.alexandria.business.security.write.states.UserState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,5 +36,12 @@ public class UserController {
     public ResponseEntity<?> displayAll() throws Exception {
         List<UserGridModel> userModelList = this.userGridReadRepository.findAll();
         return ResponseEntity.ok(userModelList);
+    }
+
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/api/user/add", method = RequestMethod.POST)
+    public ResponseEntity<?> add() throws Exception {
+        return ResponseEntity.ok(new UserState());
     }
 }
