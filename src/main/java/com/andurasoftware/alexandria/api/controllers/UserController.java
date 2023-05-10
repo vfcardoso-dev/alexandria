@@ -5,6 +5,7 @@ import com.andurasoftware.alexandria.business.security.read.models.UserModel;
 import com.andurasoftware.alexandria.business.security.read.repositories.base.UserGridReadRepository;
 import com.andurasoftware.alexandria.business.security.read.repositories.base.UserReadRepository;
 import com.andurasoftware.alexandria.business.security.write.aggregates.UserAggregate;
+import com.andurasoftware.alexandria.business.security.write.repositories.base.UserRepository;
 import com.andurasoftware.alexandria.business.security.write.states.UserState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ public class UserController {
 
     @Autowired
     UserReadRepository userReadRepository;
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     UserGridReadRepository userGridReadRepository;
 
@@ -41,7 +44,9 @@ public class UserController {
 
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/api/user/add", method = RequestMethod.POST)
-    public ResponseEntity<?> add() throws Exception {
-        return ResponseEntity.ok(new UserState());
+    public ResponseEntity<?> add(UserState userState) throws Exception {
+        UserAggregate userAggregate = new UserAggregate(userState);
+        this.userRepository.save(userAggregate.getState());
+        return ResponseEntity.ok(userAggregate.getState());
     }
 }

@@ -60,7 +60,7 @@ export class UsuarioCreateComponent{
         const body=JSON.stringify(userForm);
         console.log(body)
         //return this.http.post(`${environment.apiUrl}/api/user/add`, body,{'headers':headers});
-        return this.http.post<UserForm>(`${environment.apiUrl}/user/api/add`, body,{'headers':headers})
+        return this.http.post<UserForm>(`${environment.apiUrl}/api/user/add`, body,{'headers':headers})
                         .pipe(catchError(this.handleError));
     }
 
