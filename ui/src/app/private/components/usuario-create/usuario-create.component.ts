@@ -10,10 +10,9 @@ import { catchError, map, Observable, throwError } from "rxjs";
 
 export interface UserForm { 
     name: FormControl<string | null>, 
-    email: FormControl<string | null>,//role:SecurityRole??
-    password: FormControl<string | null>,
-
-
+    email: FormControl<string | null>,
+    securityRole:  FormControl<string | null>,
+    password: FormControl<string | null>
 }
   
 @Component({
@@ -23,14 +22,14 @@ export interface UserForm {
 
 })
 
-
-
-
 export class UsuarioCreateComponent{
+
+    public securityRoles: Array<string> = ['USER','MANAGER','ADMIN'];
 
     public form: FormGroup = new FormGroup<UserForm>({ 
         name: new FormControl('',[Validators.required]),       
         email: new FormControl('', [Validators.required,Validators.email]),
+        securityRole: new FormControl(''),
         password: new FormControl('',[Validators.required])
     })
 
@@ -67,9 +66,10 @@ export class UsuarioCreateComponent{
     public submit = () => {
         const name = this.form.get('name')?.value;
         const email = this.form.get('email')?.value;
+        const securityRole = this.form.get('securityRole')?.value;
         const password = this.form.get('password')?.value;
 
-        const userForm : UserForm = {name:name,email:email,password:password};
+        const userForm : UserForm = {name:name,email:email,securityRole,password:password};
 
        this.addUser(userForm)
        .subscribe(userForm => console.log(userForm));

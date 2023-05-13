@@ -1,6 +1,7 @@
 
 <h1>Usuários</h1>
 
+
 <div class="example-container mat-elevation-z8">
   <div style="padding:10px;">   
     <form [formGroup]="form">
@@ -9,6 +10,16 @@
             <mat-label for="name">Nome</mat-label>
             <input matInput formControlName="name" placeholder="Nome" type="text">
             <mat-error *ngIf="form.get('nome')?.hasError('minlength')">Insira o nome</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label for="securityRole">Papel</mat-label>
+          <mat-select>
+            <mat-option matInput formControlName="securityRole" *ngFor="let securityRole of this.securityRoles" [value]="securityRole">
+              {{securityRole}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </p>
       <p>
