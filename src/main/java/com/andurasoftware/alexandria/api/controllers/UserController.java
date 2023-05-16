@@ -54,4 +54,10 @@ public class UserController {
         this.userRepository.save(userAggregate.getState());
         return ResponseEntity.ok(userAggregate.getState());
     }
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/api/user/get-security-roles", method = RequestMethod.POST)
+    public ResponseEntity<?> getSecurityRoles(){
+        return ResponseEntity.ok(SecurityRole.values());
+    }
 }

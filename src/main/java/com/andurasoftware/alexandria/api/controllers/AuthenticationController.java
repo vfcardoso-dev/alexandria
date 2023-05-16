@@ -4,6 +4,7 @@ import com.andurasoftware.alexandria.api.models.JwtRequest;
 import com.andurasoftware.alexandria.api.models.JwtResponse;
 import com.andurasoftware.alexandria.business.infra.jwt.helpers.JwtTokenUtil;
 import com.andurasoftware.alexandria.business.infra.jwt.services.JwtUserDetailsService;
+import com.andurasoftware.alexandria.business.security.shared.valueobjects.SecurityRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
