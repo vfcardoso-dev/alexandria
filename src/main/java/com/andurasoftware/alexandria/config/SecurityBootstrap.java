@@ -1,5 +1,6 @@
 package com.andurasoftware.alexandria.config;
 
+import com.andurasoftware.alexandria.business.infra.cript.EncryptHelper;
 import com.andurasoftware.alexandria.business.security.shared.valueobjects.SecurityRole;
 import com.andurasoftware.alexandria.business.security.write.repositories.base.UserRepository;
 import com.andurasoftware.alexandria.business.security.write.states.UserState;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.Environment;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -23,10 +23,13 @@ public class SecurityBootstrap implements ApplicationListener<ApplicationReadyEv
     private final UserRepository userRepository;
     private final Environment env;
 
+    private final EncryptHelper encryptHelper;
+
     @Autowired
-    public SecurityBootstrap(UserRepository userRepository, Environment env) {
+    public SecurityBootstrap(UserRepository userRepository, Environment env, EncryptHelper encryptHelper) {
         this.userRepository = userRepository;
         this.env = env;
+        this.encryptHelper = encryptHelper;
     }
 
     @Override
@@ -48,7 +51,7 @@ public class SecurityBootstrap implements ApplicationListener<ApplicationReadyEv
         user.setId(UUID.randomUUID());
         user.setName(name);
         user.setEmail(email);
-        user.setPassword(new BCryptPasswordEncoder().encode(password));
+        user.setPassword(this.encryptHelper.encryptPassword(password));
         user.setCreatedAt(new Date());
         user.setEnabled(true);
         user.setRole(authority);

@@ -14,9 +14,9 @@
       </p>
       <p>
         <mat-form-field appearance="fill">
-          <mat-label for="securityRole">Papel</mat-label>
-          <mat-select>
-            <mat-option matInput formControlName="securityRole" *ngFor="let securityRole of this.securityRoles" [value]="securityRole">
+          <mat-label for="role">Papel</mat-label>
+          <mat-select formControlName="role">
+            <mat-option matInput *ngFor="let securityRole of this.securityRoles" [value]="securityRole">
               {{securityRole}}
             </mat-option>
           </mat-select>
@@ -44,7 +44,7 @@
                 type="submit">Salvar
         </button>
       </p>    
-  </form>
   
+    </form>
   </div>
 </div>

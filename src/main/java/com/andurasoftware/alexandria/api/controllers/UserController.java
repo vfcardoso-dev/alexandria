@@ -1,5 +1,6 @@
 package com.andurasoftware.alexandria.api.controllers;
 
+import com.andurasoftware.alexandria.business.infra.cript.EncryptHelper;
 import com.andurasoftware.alexandria.business.security.read.models.UserGridModel;
 import com.andurasoftware.alexandria.business.security.read.models.UserModel;
 import com.andurasoftware.alexandria.business.security.read.repositories.base.UserGridReadRepository;
@@ -30,6 +31,9 @@ public class UserController {
     @Autowired
     UserGridReadRepository userGridReadRepository;
 
+    @Autowired
+    EncryptHelper encryptHelper;
+
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/api/user/list-all", method = RequestMethod.POST)
     public ResponseEntity<?> listAll() throws Exception {
@@ -49,7 +53,8 @@ public class UserController {
     @RequestMapping(value = "/api/user/add", method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody UserState userState) throws Exception {
         userState.setCreatedAt(new Date());
-        userState.setRole(SecurityRole.USER);
+        userState.setPassword(this.encryptHelper.encryptPassword(userState.getPassword()));
+
         UserAggregate userAggregate = new UserAggregate(userState);
         this.userRepository.save(userAggregate.getState());
         return ResponseEntity.ok(userAggregate.getState());

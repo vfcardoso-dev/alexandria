@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { MatInputModule } from '@angular/material/input';
@@ -11,7 +11,7 @@ import { catchError, map, Observable, throwError } from "rxjs";
 export interface UserForm { 
     name: FormControl<string | null>, 
     email: FormControl<string | null>,
-    securityRole:  FormControl<string | null>,
+    role:  FormControl<string | null>,
     password: FormControl<string | null>
 }
   
@@ -22,22 +22,22 @@ export interface UserForm {
 
 })
 
-export class UsuarioCreateComponent{
+export class UsuarioCreateComponent implements OnInit{
 
-    public securityRoles: Array<string> = ['USER','MANAGER','ADMIN'];
+    public securityRoles: Array<string> = [];
 
     public form: FormGroup = new FormGroup<UserForm>({ 
         name: new FormControl('',[Validators.required]),       
         email: new FormControl('', [Validators.required,Validators.email]),
-        securityRole: new FormControl(''),
+        role: new FormControl('', [Validators.required]),
         password: new FormControl('',[Validators.required])
     })
 
-    //https://www.pluralsight.com/guides/how-to-submit-form-data-using-angular
-    
-    
     constructor(private http: HttpClient, private router:Router){}
 
+    ngOnInit() {                
+        this.refreshSecurityRoles();   
+    }
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
@@ -53,6 +53,15 @@ export class UsuarioCreateComponent{
         return throwError(() => new Error('Something bad happened; please try again later.'));
     }
 
+    
+    private refreshSecurityRoles(){
+        const headers = { 'content-type': 'application/json'};
+        this.http.post<any>(`${environment.apiUrl}/api/user/get-security-roles`, {'headers':headers}).subscribe(data => {
+            this.securityRoles = data;
+        });
+    }
+    
+
 
     private addUser(userForm:UserForm): Observable<any> {
         const headers = { 'content-type': 'application/json'}  
@@ -66,13 +75,13 @@ export class UsuarioCreateComponent{
     public submit = () => {
         const name = this.form.get('name')?.value;
         const email = this.form.get('email')?.value;
-        const securityRole = this.form.get('securityRole')?.value;
+        const role = this.form.get('role')?.value;
         const password = this.form.get('password')?.value;
-
-        const userForm : UserForm = {name:name,email:email,securityRole,password:password};
-
-       this.addUser(userForm)
+        const userForm : UserForm = {name:name,email:email,role:role,password:password};    
+       
+        this.addUser(userForm)
        .subscribe(userForm => console.log(userForm));
+       
     }
     
 }
