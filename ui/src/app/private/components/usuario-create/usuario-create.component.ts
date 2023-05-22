@@ -65,11 +65,9 @@ export class UsuarioCreateComponent implements OnInit{
 
     private addUser(userForm:UserForm): Observable<any> {
         const headers = { 'content-type': 'application/json'}  
-        const body=JSON.stringify(userForm);
-        console.log(body)
-        //return this.http.post(`${environment.apiUrl}/api/user/add`, body,{'headers':headers});
+        const body=JSON.stringify(userForm);                
         return this.http.post<UserForm>(`${environment.apiUrl}/api/user/add`, body,{'headers':headers})
-                        .pipe(catchError(this.handleError));
+                        .pipe(catchError(this.handleError));                        
     }
 
     public submit = () => {
@@ -80,7 +78,9 @@ export class UsuarioCreateComponent implements OnInit{
         const userForm : UserForm = {name:name,email:email,role:role,password:password};    
        
         this.addUser(userForm)
-       .subscribe(userForm => console.log(userForm));
+        .subscribe(            
+                () => this.router.navigate(['/app/seguranca/usuarios'])
+        );
        
     }
     
