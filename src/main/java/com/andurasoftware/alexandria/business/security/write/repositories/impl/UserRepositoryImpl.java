@@ -32,4 +32,5 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     public void save(UserAggregate aggregate) {
         this.em.persist(aggregate.getState());
     }
+
 }
