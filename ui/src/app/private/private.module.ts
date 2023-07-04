@@ -9,8 +9,10 @@ import { LogoutComponent } from "./components/logout/logout.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { AutorListComponent } from "./components/autores/autores.component";
+import { AuthorCreateComponent } from "./components/author-create/author-create.component";
 import { UsuarioListComponent } from "./components/usuarios/usuarios.component";
 import { UsuarioCreateComponent } from "./components/usuario-create/usuario-create.component";
+
 
 @NgModule({
     declarations: [
@@ -20,6 +22,7 @@ import { UsuarioCreateComponent } from "./components/usuario-create/usuario-crea
         FooterComponent,
         LogoutComponent,
         AutorListComponent,
+        AuthorCreateComponent,
         UsuarioListComponent,
         UsuarioCreateComponent
     ],

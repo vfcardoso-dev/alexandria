@@ -5,11 +5,13 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { MainComponent } from './components/main/main.component';
 import { UsuarioListComponent } from './components/usuarios/usuarios.component';
 import { UsuarioCreateComponent } from './components/usuario-create/usuario-create.component';
+import { AuthorCreateComponent } from './components/author-create/author-create.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
     { path: 'main', component: MainComponent },
     { path: 'biblioteca/autores', component: AutorListComponent },
+    { path: 'biblioteca/autores/criar', component: AuthorCreateComponent },
     { path: 'seguranca/usuarios', component: UsuarioListComponent },
     { path: 'seguranca/usuarios/criar', component: UsuarioCreateComponent },
     { path: 'logout', component: LogoutComponent }
