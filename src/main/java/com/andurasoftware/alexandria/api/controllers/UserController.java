@@ -1,5 +1,6 @@
 package com.andurasoftware.alexandria.api.controllers;
 
+import com.andurasoftware.alexandria.api.models.StringWrapper;
 import com.andurasoftware.alexandria.business.infra.cript.EncryptHelper;
 import com.andurasoftware.alexandria.business.security.read.models.UserGridModel;
 import com.andurasoftware.alexandria.business.security.read.models.UserModel;
@@ -12,6 +13,8 @@ import com.andurasoftware.alexandria.business.security.write.states.UserState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,9 +50,15 @@ public class UserController {
         List<UserGridModel> userModelList = this.userGridReadRepository.findAll();
         return ResponseEntity.ok(userModelList);
     }
-
-
     @PreAuthorize("permitAll()")
+    @RequestMapping(value="/api/user/info.json")
+    public ResponseEntity<?> currentUserInfo() throws Exception {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        var user = (User) auth.getPrincipal();
+        user.eraseCredentials();
+        return ResponseEntity.ok(user);
+    }
+
     @RequestMapping(value = "/api/user/add", method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody UserState userState) throws Exception {
         userState.setCreatedAt(new Date());
