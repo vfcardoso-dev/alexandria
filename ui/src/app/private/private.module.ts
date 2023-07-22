@@ -12,6 +12,7 @@ import { AutorListComponent } from "./components/autores/autores.component";
 import { AuthorCreateComponent } from "./components/author-create/author-create.component";
 import { UsuarioListComponent } from "./components/usuarios/usuarios.component";
 import { UsuarioCreateComponent } from "./components/usuario-create/usuario-create.component";
+import { HeaderApi } from "./components/header/header.api";
 
 
 @NgModule({
