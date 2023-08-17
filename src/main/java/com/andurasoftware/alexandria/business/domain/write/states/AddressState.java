@@ -1,4 +1,4 @@
-package com.andurasoftware.alexandria.business.security.write.states;
+package com.andurasoftware.alexandria.business.domain.write.states;
 
 import com.andurasoftware.alexandria.business.common.interfaces.State;
 

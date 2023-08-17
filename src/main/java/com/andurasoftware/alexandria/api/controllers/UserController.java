@@ -1,6 +1,4 @@
 package com.andurasoftware.alexandria.api.controllers;
-
-import com.andurasoftware.alexandria.api.models.StringWrapper;
 import com.andurasoftware.alexandria.business.infra.cript.EncryptHelper;
 import com.andurasoftware.alexandria.business.security.read.models.UserGridModel;
 import com.andurasoftware.alexandria.business.security.read.models.UserModel;
@@ -39,20 +37,20 @@ public class UserController {
 
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/api/user/list-all", method = RequestMethod.POST)
-    public ResponseEntity<?> listAll() throws Exception {
+    public ResponseEntity<?> listAll() {
         List<UserModel> userModelList = this.userReadRepository.findAll();
         return ResponseEntity.ok(userModelList);
     }
 
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/api/user/grid/list.json", method = RequestMethod.POST)
-    public ResponseEntity<?> displayAll() throws Exception {
+    public ResponseEntity<?> displayAll() {
         List<UserGridModel> userModelList = this.userGridReadRepository.findAll();
         return ResponseEntity.ok(userModelList);
     }
     @PreAuthorize("permitAll()")
     @RequestMapping(value="/api/user/info.json")
-    public ResponseEntity<?> currentUserInfo() throws Exception {
+    public ResponseEntity<?> currentUserInfo() {
         var auth = SecurityContextHolder.getContext().getAuthentication();
         var user = (User) auth.getPrincipal();
         user.eraseCredentials();
@@ -60,7 +58,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/api/user/add", method = RequestMethod.POST)
-    public ResponseEntity<?> add(@RequestBody UserState userState) throws Exception {
+    public ResponseEntity<?> add(@RequestBody UserState userState) {
         userState.setCreatedAt(new Date());
         userState.setPassword(this.encryptHelper.encryptPassword(userState.getPassword()));
 

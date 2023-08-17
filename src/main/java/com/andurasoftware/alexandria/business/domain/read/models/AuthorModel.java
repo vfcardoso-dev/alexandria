@@ -1,12 +1,12 @@
-package com.andurasoftware.alexandria.business.security.read.models;
+package com.andurasoftware.alexandria.business.domain.read.models;
 
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
+import com.andurasoftware.alexandria.business.domain.read.models.TitleModel;
 import org.springframework.data.annotation.Immutable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Immutable
@@ -22,6 +22,14 @@ public class AuthorModel implements Model {
     private String sobrenome;
     @Column
     private String pseudonimo;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "[author_title]",
+            joinColumns = { @JoinColumn(name = "author_id") },
+            inverseJoinColumns = { @JoinColumn(name = "title_id") }
+    )
+    Set<TitleModel> projectSet = new HashSet<>();
 
     @Override
     public UUID getId() {
@@ -55,5 +63,13 @@ public class AuthorModel implements Model {
 
     public void setPseudonimo(String pseudonimo) {
         this.pseudonimo = pseudonimo;
+    }
+
+    public Set<TitleModel> getProjectSet() {
+        return projectSet;
+    }
+
+    public void setProjectSet(Set<TitleModel> projectSet) {
+        this.projectSet = projectSet;
     }
 }

@@ -1,7 +1,7 @@
 package com.andurasoftware.alexandria.api.controllers;
 
 import com.andurasoftware.alexandria.business.security.read.models.AuthorGridModel;
-import com.andurasoftware.alexandria.business.security.read.repositories.base.AuthorGridReadRepository;
+import com.andurasoftware.alexandria.business.domain.read.repositories.base.AuthorGridReadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,7 +20,7 @@ public class AuthorController {
 
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/api/author/grid/list.json", method = RequestMethod.POST)
-    public ResponseEntity<?> displayAll() throws Exception {
+    public ResponseEntity<?> displayAll() {
         List<AuthorGridModel> userModelList = this.authorGridReadRepository.findAll();
         return ResponseEntity.ok(userModelList);
     }

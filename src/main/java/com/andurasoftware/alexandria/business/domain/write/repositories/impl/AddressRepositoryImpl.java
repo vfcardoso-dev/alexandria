@@ -1,7 +1,7 @@
-package com.andurasoftware.alexandria.business.security.write.repositories.impl;
+package com.andurasoftware.alexandria.business.domain.write.repositories.impl;
 
-import com.andurasoftware.alexandria.business.security.write.aggregates.AddressAggregate;
-import com.andurasoftware.alexandria.business.security.write.repositories.custom.AddressRepositoryCustom;
+import com.andurasoftware.alexandria.business.domain.write.aggregates.AddressAggregate;
+import com.andurasoftware.alexandria.business.domain.write.repositories.custom.AddressRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
