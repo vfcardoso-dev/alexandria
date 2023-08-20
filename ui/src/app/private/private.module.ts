@@ -13,6 +13,7 @@ import { AuthorCreateComponent } from "./components/author-create/author-create.
 import { UsuarioListComponent } from "./components/usuarios/usuarios.component";
 import { UsuarioCreateComponent } from "./components/usuario-create/usuario-create.component";
 import { HeaderApi } from "./components/header/header.api";
+import { TitleListComponent } from "./components/title-list/title-list.component";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HeaderApi } from "./components/header/header.api";
         AutorListComponent,
         AuthorCreateComponent,
         UsuarioListComponent,
-        UsuarioCreateComponent
+        UsuarioCreateComponent,
+        TitleListComponent
     ],
     imports: [
         CommonModule,

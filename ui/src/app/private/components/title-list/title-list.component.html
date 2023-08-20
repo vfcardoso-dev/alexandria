@@ -1,0 +1,30 @@
+
+<h1>Títulos</h1>
+
+<div class="buttons">
+  <button mat-flat-button color="primary"  routerLink="/app/biblioteca/autores/criar">Novo</button>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <table mat-table [dataSource]="titleData" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>      
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome + ' ' + element.sobrenome}} </td>
+    </ng-container>      
+    <ng-container matColumnDef="pseudonimo">
+      <th mat-header-cell *matHeaderCellDef> Pseudônimo </th>
+      <td mat-cell *matCellDef="let element"> {{element.pseudonimo}} </td>
+    </ng-container>      
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+  </table>
+
+  <!--<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
+
+</div>
