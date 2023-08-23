@@ -12,6 +12,7 @@ import java.util.UUID;
 @Table(name="[title]")
 public class TitleModel {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column
     private String name;

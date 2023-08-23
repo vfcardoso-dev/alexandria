@@ -1,4 +1,4 @@
-package com.andurasoftware.alexandria.business.security.read.models;
+package com.andurasoftware.alexandria.business.domain.read.models.grid;
 
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import org.springframework.data.annotation.Immutable;

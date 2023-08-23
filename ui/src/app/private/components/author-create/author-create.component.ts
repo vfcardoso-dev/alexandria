@@ -6,7 +6,6 @@ import { Router } from "@angular/router";
     selector: 'author-create',
     templateUrl: './author-create.component.html',
     styleUrls: ['./author-create.component.scss']
-
 })
 
 export class AuthorCreateComponent implements OnInit{

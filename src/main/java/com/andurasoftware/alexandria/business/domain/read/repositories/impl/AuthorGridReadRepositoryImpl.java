@@ -1,6 +1,6 @@
 package com.andurasoftware.alexandria.business.domain.read.repositories.impl;
 
-import com.andurasoftware.alexandria.business.security.read.models.AuthorGridModel;
+import com.andurasoftware.alexandria.business.domain.read.models.grid.AuthorGridModel;
 import com.andurasoftware.alexandria.business.domain.read.repositories.base.AuthorGridReadRepository;
 
 import javax.persistence.EntityManager;

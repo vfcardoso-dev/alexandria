@@ -2,8 +2,6 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from "@angular/material/form-field";
 import { environment } from "src/environments/environment";
 import { catchError, map, Observable, throwError } from "rxjs";
 
