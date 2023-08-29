@@ -12,6 +12,6 @@ public class AuthorGridReadRepositoryImpl implements AuthorGridReadRepository {
     private EntityManager em;
     @Override
     public List<AuthorGridModel> findAll() {
-        return this.em.createQuery("select u from AuthorGridModel u", AuthorGridModel.class).getResultList();
+        return this.em.createQuery("select u from AuthorGridModel u join r.titleSet t", AuthorGridModel.class).getResultList();
     }
 }

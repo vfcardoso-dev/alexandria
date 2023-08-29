@@ -1,7 +1,9 @@
 package com.andurasoftware.alexandria.business.domain.read.models;
 
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
-import com.andurasoftware.alexandria.business.domain.read.models.TitleModel;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Immutable;
 
 import javax.persistence.*;
@@ -12,9 +14,11 @@ import java.util.UUID;
 @Immutable
 @Entity
 @Table(name="[author]")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class AuthorModel implements Model {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column
     private String nome;
@@ -29,7 +33,7 @@ public class AuthorModel implements Model {
             joinColumns = { @JoinColumn(name = "author_id") },
             inverseJoinColumns = { @JoinColumn(name = "title_id") }
     )
-    Set<TitleModel> projectSet = new HashSet<>();
+    Set<TitleModel> titleSet = new HashSet<>();
 
     @Override
     public UUID getId() {
@@ -65,11 +69,11 @@ public class AuthorModel implements Model {
         this.pseudonimo = pseudonimo;
     }
 
-    public Set<TitleModel> getProjectSet() {
-        return projectSet;
+    public Set<TitleModel> getTitleSet() {
+        return titleSet;
     }
 
-    public void setProjectSet(Set<TitleModel> projectSet) {
-        this.projectSet = projectSet;
+    public void setTitleSet(Set<TitleModel> titleSet) {
+        this.titleSet = titleSet;
     }
 }
