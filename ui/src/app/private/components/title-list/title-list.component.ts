@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { AuthorGridModel } from "../autores/autores.component";
@@ -19,7 +19,7 @@ export interface TitleGridModel{
     styleUrls: ['./title-list.component.scss'],
 })
 
-export class TitleListComponent{
+export class TitleListComponent implements OnInit{
 
     constructor(private http: HttpClient, private router:Router){}
 
@@ -33,26 +33,26 @@ export class TitleListComponent{
           this.titleData = data;
         });
         
-      }
+    }
   
-      ngOnInit() {        
-        this.loadDisplayData();                  
-      }
+    ngOnInit() {        
+      this.loadDisplayData();                  
+    }
 
-      public displayAuthors(authorSet: AuthorGridModel[]): string{
-          let authors: string = "";
-          authorSet.forEach((author, index) => {            
-              
-              authors = authors + author.nome + ' ' + author.sobrenome;
-              if(author.pseudonimo !== null)
-                authors = authors + ' (' + author.pseudonimo + ')'; 
-              
-              if(index < authorSet.length-1){
-                authors = authors + ',  ';                
-              }
-          });
-          
-          return authors;
-      }
+    public displayAuthors(authorSet: AuthorGridModel[]): string{
+        let authors: string = "";
+        authorSet.forEach((author, index) => {            
+            
+            authors = authors + author.nome + ' ' + author.sobrenome;
+            if(author.pseudonimo !== null)
+              authors = authors + ' (' + author.pseudonimo + ')'; 
+            
+            if(index < authorSet.length-1){
+              authors = authors + ',  ';                
+            }
+        });
+        
+        return authors;
+    }
     
 }

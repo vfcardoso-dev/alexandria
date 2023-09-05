@@ -12,9 +12,9 @@ import { AutorListComponent } from "./components/autores/autores.component";
 import { AuthorCreateComponent } from "./components/author-create/author-create.component";
 import { UsuarioListComponent } from "./components/usuarios/usuarios.component";
 import { UsuarioCreateComponent } from "./components/usuario-create/usuario-create.component";
-import { HeaderApi } from "./components/header/header.api";
 import { TitleListComponent } from "./components/title-list/title-list.component";
 import { TitleCreateComponent } from "./components/title-create/title-create.component";
+import { CopyListComponent } from "./components/copy-list/copy-list.component";
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { TitleCreateComponent } from "./components/title-create/title-create.com
         UsuarioListComponent,
         UsuarioCreateComponent,
         TitleListComponent,
-        TitleCreateComponent
+        TitleCreateComponent,
+        CopyListComponent             
     ],
     imports: [
         CommonModule,

@@ -8,6 +8,7 @@ import { UsuarioCreateComponent } from './components/usuario-create/usuario-crea
 import { AuthorCreateComponent } from './components/author-create/author-create.component';
 import { TitleListComponent } from './components/title-list/title-list.component';
 import { TitleCreateComponent } from './components/title-create/title-create.component';
+import { CopyListComponent } from './components/copy-list/copy-list.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'biblioteca/autores/criar', component: AuthorCreateComponent },
     { path: 'library/titles/list', component: TitleListComponent },
     { path: 'library/titles/create', component: TitleCreateComponent },
+    { path: 'library/copies/list', component: CopyListComponent },
     { path: 'seguranca/usuarios', component: UsuarioListComponent },
     { path: 'seguranca/usuarios/criar', component: UsuarioCreateComponent },
     { path: 'logout', component: LogoutComponent }
