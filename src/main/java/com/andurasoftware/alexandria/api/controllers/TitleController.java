@@ -1,8 +1,6 @@
 package com.andurasoftware.alexandria.api.controllers;
 
 import com.andurasoftware.alexandria.business.domain.read.models.TitleModel;
-import com.andurasoftware.alexandria.business.domain.read.repositories.base.AuthorGridReadRepository;
-import com.andurasoftware.alexandria.business.domain.read.models.grid.AuthorGridModel;
 import com.andurasoftware.alexandria.business.domain.read.repositories.base.TitleReadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
