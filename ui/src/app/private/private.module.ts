@@ -15,6 +15,7 @@ import { UsuarioCreateComponent } from "./components/usuario-create/usuario-crea
 import { TitleListComponent } from "./components/title-list/title-list.component";
 import { TitleCreateComponent } from "./components/title-create/title-create.component";
 import { CopyListComponent } from "./components/copy-list/copy-list.component";
+import { CopyCreateComponent } from "./components/copy-create/copy-create.component";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CopyListComponent } from "./components/copy-list/copy-list.component";
         UsuarioCreateComponent,
         TitleListComponent,
         TitleCreateComponent,
-        CopyListComponent             
+        CopyListComponent,
+        CopyCreateComponent             
     ],
     imports: [
         CommonModule,

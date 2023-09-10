@@ -1,10 +1,7 @@
 package com.andurasoftware.alexandria.business.domain.read.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.Immutable;
 
 import javax.persistence.*;
@@ -24,6 +21,9 @@ public class TitleModel {
     private String name;
     @ManyToMany(mappedBy = "titleSet")
     private Set<AuthorModel> authorSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "titleModel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<CopyModel> copySet = new HashSet<>();
 
     public UUID getId() {
         return id;
@@ -47,5 +47,13 @@ public class TitleModel {
 
     public void setAuthorSet(Set<AuthorModel> authorSet) {
         this.authorSet = authorSet;
+    }
+
+    public Set<CopyModel> getCopySet() {
+        return copySet;
+    }
+
+    public void setCopySet(Set<CopyModel> copySet) {
+        this.copySet = copySet;
     }
 }

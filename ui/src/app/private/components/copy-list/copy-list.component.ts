@@ -2,14 +2,15 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { TitleGridModel } from "../title-list/title-list.component";
+import { AuthorGridModel } from "../autores/autores.component";
 
 
 export interface CopyListModel{
 
     id: string;
-    number: string;
-    title: string;
-    author: string;
+    number: string;    
+    titleModel: TitleGridModel;
 }
 
 @Component({
@@ -28,12 +29,13 @@ export class CopyListComponent implements OnInit{
 
     public loadDisplayData = () => {
 
-        /*
+        
         this.http.post<CopyListModel[]>(`${environment.apiUrl}/api/copy/grid/list.json`, {  }).subscribe(data => {                                              
-          this.titleData = data;
+          this.copyData = data;
         });
-        */
+        
         //Fake Data 
+        /*
         this.copyData = 
         [
             {
@@ -49,7 +51,25 @@ export class CopyListComponent implements OnInit{
                 author: 'Roger Pressman'
             }
         ];
+        */
         
+    }
+
+    //TODO:Abstrair
+    public displayAuthors(authorSet: AuthorGridModel[]): string{
+        let authors: string = "";
+        authorSet.forEach((author, index) => {            
+            
+            authors = authors + author.nome + ' ' + author.sobrenome;
+            if(author.pseudonimo !== null)
+              authors = authors + ' (' + author.pseudonimo + ')'; 
+            
+            if(index < authorSet.length-1){
+              authors = authors + ',  ';                
+            }
+        });
+        
+        return authors;
     }
   
     ngOnInit() {        
