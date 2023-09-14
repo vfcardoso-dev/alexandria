@@ -16,6 +16,8 @@ import { TitleListComponent } from "./components/title-list/title-list.component
 import { TitleCreateComponent } from "./components/title-create/title-create.component";
 import { CopyListComponent } from "./components/copy-list/copy-list.component";
 import { CopyCreateComponent } from "./components/copy-create/copy-create.component";
+import { MemberCreateComponent } from "./components/member-create/member-create.component";
+import { MemberListComponent } from "./components/member-list/member-list.component";
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { CopyCreateComponent } from "./components/copy-create/copy-create.compon
         TitleListComponent,
         TitleCreateComponent,
         CopyListComponent,
-        CopyCreateComponent             
+        CopyCreateComponent,
+        MemberCreateComponent,
+        MemberListComponent            
     ],
     imports: [
         CommonModule,

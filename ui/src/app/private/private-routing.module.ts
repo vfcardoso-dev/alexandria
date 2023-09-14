@@ -10,6 +10,7 @@ import { TitleListComponent } from './components/title-list/title-list.component
 import { TitleCreateComponent } from './components/title-create/title-create.component';
 import { CopyListComponent } from './components/copy-list/copy-list.component';
 import { CopyCreateComponent } from './components/copy-create/copy-create.component';
+import { MemberListComponent } from './components/member-list/member-list.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'library/titles/create', component: TitleCreateComponent },
     { path: 'library/copies/list', component: CopyListComponent },
     { path: 'library/copy/create', component: CopyCreateComponent },
+    { path: 'library/members/list', component: MemberListComponent },
     { path: 'seguranca/usuarios', component: UsuarioListComponent },
     { path: 'seguranca/usuarios/criar', component: UsuarioCreateComponent },
     { path: 'logout', component: LogoutComponent }
