@@ -9,7 +9,6 @@ import java.util.UUID;
 @Table(name="[member]")
 public class MemberState implements State{
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
