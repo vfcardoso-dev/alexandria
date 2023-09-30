@@ -1,0 +1,25 @@
+<h1>Empréstimo</h1>
+
+
+<div class="example-container mat-elevation-z8">
+  <div style="padding:10px;">   
+    <form [formGroup]="form">
+      <p>
+        <mat-form-field>
+            <mat-label for="name">Nome</mat-label>
+            <input matInput formControlName="name" placeholder="Nome" type="text">
+            <mat-error *ngIf="form.get('nome')?.hasError('minlength')">Insira o nome</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <button mat-flat-button 
+                color="primary" 
+                (click)="submit()" 
+                [disabled]="form.invalid" 
+                type="submit">Salvar
+        </button>
+      </p>    
+  
+    </form>
+  </div>
+</div>

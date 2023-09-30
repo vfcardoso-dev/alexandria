@@ -18,6 +18,8 @@ import { CopyListComponent } from "./components/copy-list/copy-list.component";
 import { CopyCreateComponent } from "./components/copy-create/copy-create.component";
 import { MemberCreateComponent } from "./components/member-create/member-create.component";
 import { MemberListComponent } from "./components/member-list/member-list.component";
+import { LoanListComponent } from "./components/loan-list/loan-list.component";
+import { LoanCreateComponent } from "./components/loan-create/loan-create.component";
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { MemberListComponent } from "./components/member-list/member-list.compon
         CopyListComponent,
         CopyCreateComponent,
         MemberCreateComponent,
-        MemberListComponent            
+        MemberListComponent,
+        LoanCreateComponent,
+        LoanListComponent        
     ],
     imports: [
         CommonModule,

@@ -12,6 +12,8 @@ import { CopyListComponent } from './components/copy-list/copy-list.component';
 import { CopyCreateComponent } from './components/copy-create/copy-create.component';
 import { MemberListComponent } from './components/member-list/member-list.component';
 import { MemberCreateComponent } from './components/member-create/member-create.component';
+import { LoanListComponent } from './components/loan-list/loan-list.component';
+import { LoanCreateComponent } from './components/loan-create/loan-create.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
@@ -23,6 +25,8 @@ const routes: Routes = [
     { path: 'library/copies/list', component: CopyListComponent },
     { path: 'library/copy/create', component: CopyCreateComponent },
     { path: 'library/members/list', component: MemberListComponent },
+    { path: 'library/loans/list', component: LoanListComponent },
+    { path: 'library/loan/create', component: LoanCreateComponent },
     { path: 'library/member/create', component: MemberCreateComponent },
     { path: 'seguranca/usuarios', component: UsuarioListComponent },
     { path: 'seguranca/usuarios/criar', component: UsuarioCreateComponent },

@@ -21,7 +21,7 @@ export interface TitleGridModel{
 
 export class TitleListComponent implements OnInit{
 
-    constructor(private http: HttpClient, private router:Router){}
+    constructor(private http: HttpClient, private router: Router){}
 
     titleData: TitleGridModel[] = [];  
     displayedColumns: string[] = ['id', 'nome', 'autores'];
