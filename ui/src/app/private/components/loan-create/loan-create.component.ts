@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { catchError, Observable, throwError } from "rxjs";
@@ -19,18 +19,29 @@ export interface LoanForm {
 
 export class LoanCreateComponent implements OnInit{
 
-    
+    @ViewChild('input') input: ElementRef<HTMLInputElement>;
+    myControl = new FormControl('');
+    options: string[] = ['One', 'Two', 'Three', 'Four', 'Five'];
+    filteredOptions: string[];
+
 
     public form: FormGroup = new FormGroup<LoanForm>({ 
-        name: new FormControl('',[Validators.required])               
+        name: new FormControl('',[Validators.required])
     })
 
     
-    constructor(private http: HttpClient, private router:Router){}
+    constructor(private http: HttpClient, private router:Router){ 
+        this.filteredOptions = this.options.slice();     
+    }
 
     ngOnInit() {      
-                          
+                       
     }
+
+    public filter(): void {
+        const filterValue = this.input.nativeElement.value.toLowerCase();
+        this.filteredOptions = this.options.filter(o => o.toLowerCase().includes(filterValue));
+      }
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {

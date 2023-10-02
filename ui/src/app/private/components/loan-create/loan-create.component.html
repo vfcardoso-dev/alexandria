@@ -5,6 +5,38 @@
   <div style="padding:10px;">   
     <form [formGroup]="form">
       <p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Membro</mat-label>
+          <input #input
+                 type="text"
+                 placeholder="Selecione"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto"
+                 (input)="filter()"
+                 (focus)="filter()">
+          <mat-autocomplete requireSelection #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Exemplar</mat-label>
+          <input #input
+                 type="text"
+                 placeholder="Selecione"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto"
+                 (input)="filter()"
+                 (focus)="filter()">
+          <mat-autocomplete requireSelection #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
         <mat-form-field>
             <mat-label for="name">Nome</mat-label>
             <input matInput formControlName="name" placeholder="Nome" type="text">
