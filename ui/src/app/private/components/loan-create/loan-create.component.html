@@ -1,6 +1,5 @@
 <h1>Empréstimo</h1>
 
-
 <div class="example-container mat-elevation-z8">
   <div style="padding:10px;">   
     <form [formGroup]="form">
@@ -13,30 +12,32 @@
                  matInput
                  [formControl]="myControl"
                  [matAutocomplete]="auto"
-                 (input)="filter()"
-                 (focus)="filter()">
+                 (input)="filterMember(input)"
+                 (focus)="filterMember(input)">
           <mat-autocomplete requireSelection #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
+            <mat-option *ngFor="let member of filteredMemberData" [value]="member.name" (onSelectionChange)="setSelectedMember(member)">
+              {{member.name}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+        
         <mat-form-field class="example-full-width">
           <mat-label>Exemplar</mat-label>
-          <input #input
+          <input #inputCopy
                  type="text"
                  placeholder="Selecione"
                  matInput
-                 [formControl]="myControl"
-                 [matAutocomplete]="auto"
-                 (input)="filter()"
-                 (focus)="filter()">
-          <mat-autocomplete requireSelection #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
+                 [formControl]="myControl2"
+                 [matAutocomplete]="autoCopy"
+                 (input)="filterCopy(inputCopy)"
+                 (focus)="filterCopy(inputCopy)">
+          <mat-autocomplete requireSelection #autoCopy="matAutocomplete">
+            <mat-option *ngFor="let copy of filteredCopyData" [value]="displayCopyName(copy)" (onSelectionChange)="setSelectedCopy(copy)">
+              {{ displayCopyName(copy) }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+        
         <mat-form-field>
             <mat-label for="name">Nome</mat-label>
             <input matInput formControlName="name" placeholder="Nome" type="text">
@@ -50,8 +51,7 @@
                 [disabled]="form.invalid" 
                 type="submit">Salvar
         </button>
-      </p>    
-  
+      </p>      
     </form>
   </div>
 </div>
