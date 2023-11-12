@@ -1,4 +1,4 @@
-<h1>Empréstimo</h1>
+<h1>Empréstimo - {{ selectedDate }}</h1>
 
 <div class="example-container mat-elevation-z8">
   <div style="padding:10px;">   
@@ -37,12 +37,15 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        
-        <mat-form-field>
-            <mat-label for="name">Nome</mat-label>
-            <input matInput formControlName="name" placeholder="Nome" type="text">
-            <mat-error *ngIf="form.get('nome')?.hasError('minlength')">Insira o nome</mat-error>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [max]="todayDate" [value]="selectedDate" (dateInput)="setSelectedDate($event)">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+
       </p>
       <p>
         <button mat-flat-button 

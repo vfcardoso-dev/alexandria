@@ -20,6 +20,7 @@ import { MemberCreateComponent } from "./components/member-create/member-create.
 import { MemberListComponent } from "./components/member-list/member-list.component";
 import { LoanListComponent } from "./components/loan-list/loan-list.component";
 import { LoanCreateComponent } from "./components/loan-create/loan-create.component";
+import { MatNativeDateModule } from "@angular/material/core";
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { LoanCreateComponent } from "./components/loan-create/loan-create.compon
         MaterialModule,
         ReactiveFormsModule,
         PrivateRoutingModule,
+        MatNativeDateModule,
     ],
     providers: []
 })

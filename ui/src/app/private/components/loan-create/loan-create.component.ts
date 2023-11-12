@@ -5,8 +5,8 @@ import { Router } from "@angular/router";
 import { catchError, filter, Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 import { MemberGridListModel } from "../member-list/member-list.component";
-import { TitleGridModel } from "../title-list/title-list.component";
 import { CopyListModel } from "../copy-list/copy-list.component";
+import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 
 
 export interface LoanForm {
@@ -25,6 +25,7 @@ export class LoanCreateComponent implements OnInit{
     @ViewChild('input') input: ElementRef<HTMLInputElement>;
     myControl = new FormControl(''); 
     myControl2 = new FormControl('');      
+
     
     memberData: MemberGridListModel[] = [];
     filteredMemberData: MemberGridListModel[];
@@ -35,7 +36,13 @@ export class LoanCreateComponent implements OnInit{
     memberId: string;
     copyId: string;
 
+    //today's date
+    todayDate: Date = new Date();
 
+    selectedDate: Date = this.todayDate;
+
+    ////TODO: Implementar gerenciamento de eventos
+    //events: string[] = [];
 
     public form: FormGroup = new FormGroup<LoanForm>({ 
         name: new FormControl('',[Validators.required])
@@ -64,6 +71,10 @@ export class LoanCreateComponent implements OnInit{
 
     public setSelectedMember(member: MemberGridListModel){
         this.memberId = member.id;
+    }
+
+    public setSelectedDate(event: MatDatepickerInputEvent<Date>){        
+        this.selectedDate = new Date(event.value!.toDateString());
     }
         
     public loadCopyData = () => {
@@ -121,5 +132,13 @@ export class LoanCreateComponent implements OnInit{
         );
        
     }
+
+    //TODO: Implementar gerenciamento de eventos
+    /*
+    addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+        this.events.push(`${type}: ${event.value}`);
+        console.log(event.value);
+    }
+    */
 
 }
