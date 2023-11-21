@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Form, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { catchError, filter, Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -10,7 +10,9 @@ import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 
 
 export interface LoanForm {
-    name: FormControl<string | null> 
+    member: FormControl<string | null> 
+    title: FormControl<any>
+    date: FormControl<any>
 }
 
 
@@ -41,11 +43,10 @@ export class LoanCreateComponent implements OnInit{
 
     selectedDate: Date = this.todayDate;
 
-    ////TODO: Implementar gerenciamento de eventos
-    //events: string[] = [];
-
     public form: FormGroup = new FormGroup<LoanForm>({ 
-        name: new FormControl('',[Validators.required])
+        member: new FormControl('',[Validators.required]),
+        title: new FormControl('',[Validators.required]),
+        date: new FormControl('',[Validators.required])
     })
 
     
@@ -70,7 +71,7 @@ export class LoanCreateComponent implements OnInit{
     }
 
     public setSelectedMember(member: MemberGridListModel){
-        this.memberId = member.id;
+        this.memberId = member.id;        ;
     }
 
     public setSelectedDate(event: MatDatepickerInputEvent<Date>){        
@@ -115,18 +116,23 @@ export class LoanCreateComponent implements OnInit{
         return throwError(() => new Error('Something bad happened; please try again later.'));
     }
 
-    private addTitle(titleForm: LoanForm): Observable<any> {
+    private addLoan(loanForm: LoanForm): Observable<any> {
         const headers = { 'content-type': 'application/json'}  
-        const body=JSON.stringify(titleForm);                
+        const body=JSON.stringify(loanForm);                
         return this.http.post<LoanForm>(`${environment.apiUrl}/api/loan/add`, body,{'headers':headers})
                         .pipe(catchError(this.handleError));                        
     }
 
     public submit = () => {
-        const name = this.form.get('name')?.value;        
-        const titleForm : LoanForm = {name:name};    
-       
-        this.addTitle(titleForm)
+                  
+        const loanForm : LoanForm = 
+        {
+            member: this.form.get('member')?.value,
+            title: this.form.get('title')?.value,
+            date: this.form.get('date')?.value
+        };            
+        
+        this.addLoan(loanForm)
         .subscribe(            
                 () => this.router.navigate(['/app/library/loans/list'])
         );
