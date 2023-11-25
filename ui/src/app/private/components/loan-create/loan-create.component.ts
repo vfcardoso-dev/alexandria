@@ -11,8 +11,8 @@ import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 
 export interface LoanForm {
     member: FormControl<string | null> 
-    title: FormControl<any>
-    date: FormControl<any>
+    title: FormControl<string | null>
+    date: FormControl<Date | null>
 }
 
 
@@ -25,8 +25,8 @@ export interface LoanForm {
 export class LoanCreateComponent implements OnInit{
 
     @ViewChild('input') input: ElementRef<HTMLInputElement>;
-    myControl = new FormControl(''); 
-    myControl2 = new FormControl('');      
+   //myControl = new FormControl(''); 
+    //myControl2 = new FormControl('');      
 
     
     memberData: MemberGridListModel[] = [];
@@ -46,7 +46,7 @@ export class LoanCreateComponent implements OnInit{
     public form: FormGroup = new FormGroup<LoanForm>({ 
         member: new FormControl('',[Validators.required]),
         title: new FormControl('',[Validators.required]),
-        date: new FormControl('',[Validators.required])
+        date: new FormControl(this.selectedDate,[Validators.required])
     })
 
     
@@ -70,13 +70,17 @@ export class LoanCreateComponent implements OnInit{
         this.filteredMemberData = this.memberData.filter(m => m.name.toLowerCase().includes(filterValue));
     }
 
+    /*
     public setSelectedMember(member: MemberGridListModel){
         this.memberId = member.id;        ;
     }
+    */
 
+    /*
     public setSelectedDate(event: MatDatepickerInputEvent<Date>){        
         this.selectedDate = new Date(event.value!.toDateString());
     }
+    */
         
     public loadCopyData = () => {
         this.http.post<CopyListModel[]>(`${environment.apiUrl}/api/copy/grid/list.json`, {  }).subscribe(data => {                                              
@@ -118,7 +122,8 @@ export class LoanCreateComponent implements OnInit{
 
     private addLoan(loanForm: LoanForm): Observable<any> {
         const headers = { 'content-type': 'application/json'}  
-        const body=JSON.stringify(loanForm);                
+        const body=JSON.stringify(loanForm); 
+        console.log(loanForm);               
         return this.http.post<LoanForm>(`${environment.apiUrl}/api/loan/add`, body,{'headers':headers})
                         .pipe(catchError(this.handleError));                        
     }

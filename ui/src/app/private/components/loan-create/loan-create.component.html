@@ -1,4 +1,4 @@
-<h1>Empréstimo - {{form.valid}}</h1>
+<h1>Empréstimo</h1>
 
 <div class="example-container mat-elevation-z8">
   <div style="padding:10px;">   
@@ -16,7 +16,7 @@
                  (input)="filterMember(input)"
                  (focus)="filterMember(input)">
           <mat-autocomplete requireSelection #auto="matAutocomplete">
-            <mat-option *ngFor="let member of filteredMemberData" [value]="member.name" (onSelectionChange)="setSelectedMember(member)">
+            <mat-option *ngFor="let member of filteredMemberData" [value]="member.name">
               {{member.name}}
             </mat-option>
           </mat-autocomplete>
@@ -33,7 +33,7 @@
                  (input)="filterCopy(inputCopy)"
                  (focus)="filterCopy(inputCopy)">
           <mat-autocomplete requireSelection #autoCopy="matAutocomplete">
-            <mat-option *ngFor="let copy of filteredCopyData" [value]="displayCopyName(copy)" (onSelectionChange)="setSelectedCopy(copy)">
+            <mat-option *ngFor="let copy of filteredCopyData" [value]="displayCopyName(copy)">
               {{ displayCopyName(copy) }}
             </mat-option>
           </mat-autocomplete>
@@ -45,8 +45,7 @@
               matInput [matDatepicker]="picker" 
               [max]="todayDate"
               formControlName="date"
-              [value]="selectedDate" 
-              (dateInput)="setSelectedDate($event)">
+              [value]="selectedDate">               
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -59,7 +58,7 @@
                 [disabled]="form.invalid"                
                 (click)="submit()" 
                 type="submit">Salvar
-        </button><!-- (click)="submit()" -->
+        </button>
       </p>    
   
     </form>
