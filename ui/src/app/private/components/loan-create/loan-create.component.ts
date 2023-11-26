@@ -9,9 +9,10 @@ import { CopyListModel } from "../copy-list/copy-list.component";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 
 
+
 export interface LoanForm {
     member: FormControl<string | null> 
-    title: FormControl<string | null>
+    copy: FormControl<string | null>
     date: FormControl<Date | null>
 }
 
@@ -25,10 +26,7 @@ export interface LoanForm {
 export class LoanCreateComponent implements OnInit{
 
     @ViewChild('input') input: ElementRef<HTMLInputElement>;
-   //myControl = new FormControl(''); 
-    //myControl2 = new FormControl('');      
-
-    
+      
     memberData: MemberGridListModel[] = [];
     filteredMemberData: MemberGridListModel[];
 
@@ -45,10 +43,9 @@ export class LoanCreateComponent implements OnInit{
 
     public form: FormGroup = new FormGroup<LoanForm>({ 
         member: new FormControl('',[Validators.required]),
-        title: new FormControl('',[Validators.required]),
+        copy: new FormControl('',[Validators.required]),
         date: new FormControl(this.selectedDate,[Validators.required])
     })
-
     
     constructor(private http: HttpClient, private router:Router){ 
         this.filteredMemberData = this.memberData.slice();     
@@ -70,17 +67,15 @@ export class LoanCreateComponent implements OnInit{
         this.filteredMemberData = this.memberData.filter(m => m.name.toLowerCase().includes(filterValue));
     }
 
-    /*
-    public setSelectedMember(member: MemberGridListModel){
-        this.memberId = member.id;        ;
+    
+    public setSelectedMember(member: MemberGridListModel){        
+        this.memberId = member.id;
     }
-    */
-
-    /*
+        
     public setSelectedDate(event: MatDatepickerInputEvent<Date>){        
         this.selectedDate = new Date(event.value!.toDateString());
     }
-    */
+    
         
     public loadCopyData = () => {
         this.http.post<CopyListModel[]>(`${environment.apiUrl}/api/copy/grid/list.json`, {  }).subscribe(data => {                                              
@@ -120,36 +115,28 @@ export class LoanCreateComponent implements OnInit{
         return throwError(() => new Error('Something bad happened; please try again later.'));
     }
 
-    private addLoan(loanForm: LoanForm): Observable<any> {
+    private addLoan(loanObject: any): Observable<any> {
+        console.log('addLoan');
         const headers = { 'content-type': 'application/json'}  
-        const body=JSON.stringify(loanForm); 
-        console.log(loanForm);               
-        return this.http.post<LoanForm>(`${environment.apiUrl}/api/loan/add`, body,{'headers':headers})
+        const body=JSON.stringify(loanObject);         
+        return this.http.post<any>(`${environment.apiUrl}/api/loan/add`, body,{'headers':headers})
                         .pipe(catchError(this.handleError));                        
     }
 
     public submit = () => {
-                  
-        const loanForm : LoanForm = 
-        {
-            member: this.form.get('member')?.value,
-            title: this.form.get('title')?.value,
+                        
+        const loanObject: any =  {
+            id: null,
+            member: { id: this.memberId },
+            copy: { id: this.copyId },
             date: this.form.get('date')?.value
-        };            
-        
-        this.addLoan(loanForm)
+        };
+
+        this.addLoan(loanObject)
         .subscribe(            
                 () => this.router.navigate(['/app/library/loans/list'])
-        );
+        );        
        
     }
-
-    //TODO: Implementar gerenciamento de eventos
-    /*
-    addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-        this.events.push(`${type}: ${event.value}`);
-        console.log(event.value);
-    }
-    */
 
 }

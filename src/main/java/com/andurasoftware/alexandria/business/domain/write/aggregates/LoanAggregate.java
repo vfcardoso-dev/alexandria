@@ -4,6 +4,7 @@ import com.andurasoftware.alexandria.business.common.interfaces.BaseAggregate;
 import com.andurasoftware.alexandria.business.domain.write.states.LoanState;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 public class LoanAggregate extends BaseAggregate<LoanState> {
 

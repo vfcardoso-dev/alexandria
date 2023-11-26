@@ -1,4 +1,4 @@
-<h1>Empréstimo</h1>
+<h1>Empréstimo - {{form.invalid}}</h1>
 
 <div class="example-container mat-elevation-z8">
   <div style="padding:10px;">   
@@ -16,7 +16,7 @@
                  (input)="filterMember(input)"
                  (focus)="filterMember(input)">
           <mat-autocomplete requireSelection #auto="matAutocomplete">
-            <mat-option *ngFor="let member of filteredMemberData" [value]="member.name">
+            <mat-option *ngFor="let member of filteredMemberData" [value]="member.name" (onSelectionChange)="setSelectedMember(member)">
               {{member.name}}
             </mat-option>
           </mat-autocomplete>
@@ -28,12 +28,12 @@
                  type="text"
                  placeholder="Selecione"
                  matInput
-                 formControlName="title"
+                 formControlName="copy"
                  [matAutocomplete]="autoCopy"
                  (input)="filterCopy(inputCopy)"
                  (focus)="filterCopy(inputCopy)">
           <mat-autocomplete requireSelection #autoCopy="matAutocomplete">
-            <mat-option *ngFor="let copy of filteredCopyData" [value]="displayCopyName(copy)">
+            <mat-option *ngFor="let copy of filteredCopyData" [value]="displayCopyName(copy)" (onSelectionChange)="setSelectedCopy(copy)">
               {{ displayCopyName(copy) }}
             </mat-option>
           </mat-autocomplete>
@@ -62,67 +62,5 @@
       </p>    
   
     </form>
-
-
-    <!--
-    <form [formGroup]="form">
-      <p>
-        
-        
-        <mat-form-field class="example-full-width">
-          <mat-label>Membro</mat-label>
-          <input #input
-                 type="text"
-                 placeholder="Selecione"
-                 matInput       
-                 [formControl]="form.name"          
-                 [matAutocomplete]="auto"
-                 (input)="filterMember(input)"
-                 (focus)="filterMember(input)">
-          <mat-autocomplete requireSelection #auto="matAutocomplete">
-            <mat-option *ngFor="let member of filteredMemberData" [value]="member.name" (onSelectionChange)="setSelectedMember(member)">
-              {{member.name}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      
-        
-        
-        <mat-form-field class="example-full-width">
-          <mat-label>Exemplar</mat-label>
-          <input #inputCopy
-                 type="text"
-                 placeholder="Selecione"
-                 matInput
-                 [formControl]="myControl2"
-                 [matAutocomplete]="autoCopy"
-                 (input)="filterCopy(inputCopy)"
-                 (focus)="filterCopy(inputCopy)">
-          <mat-autocomplete requireSelection #autoCopy="matAutocomplete">
-            <mat-option *ngFor="let copy of filteredCopyData" [value]="displayCopyName(copy)" (onSelectionChange)="setSelectedCopy(copy)">
-              {{ displayCopyName(copy) }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker" [max]="todayDate" [value]="selectedDate" (dateInput)="setSelectedDate($event)">
-          <mat-hint>DD/MM/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
-      </p>
-      <p>
-        <button mat-flat-button 
-                color="primary" 
-                (click)="submit()" 
-                [disabled]="form.valid" 
-                type="submit">Salvar
-        </button>
-      </p>      
-    </form>
-  -->
   </div>
 </div>

@@ -11,25 +11,25 @@ import java.util.UUID;
 public class LoanState implements State {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
 
     @Column
     private Date date;
-
     @Column
     private Date expiringDate;
 
     @Column
     private Date returnDate;
 
-    @ManyToOne(targetEntity = TitleState.class)
-    @JoinColumn(name="title_id")
-    private UUID titleId;
+    @ManyToOne
+    @JoinColumn(name="copy_id")
+    private CopyState copy;
 
-    @ManyToOne(targetEntity = MemberState.class)
+    @ManyToOne
     @JoinColumn(name="member_id")
-    private UUID memberId;
+    private MemberState member;
 
 
     public Date getDate() {
@@ -56,20 +56,20 @@ public class LoanState implements State {
         this.returnDate = returnDate;
     }
 
-    public UUID getTitleId() {
-        return titleId;
+    public CopyState getCopy() {
+        return copy;
     }
 
-    public void setTitleId(UUID titleId) {
-        this.titleId = titleId;
+    public void setCopy(CopyState copy) {
+        this.copy = copy;
     }
 
-    public UUID getMemberId() {
-        return memberId;
+    public MemberState getMember() {
+        return member;
     }
 
-    public void setMemberId(UUID memberId) {
-        this.memberId = memberId;
+    public void setMember(MemberState member) {
+        this.member = member;
     }
 
     @Override

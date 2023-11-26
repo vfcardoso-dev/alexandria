@@ -1,4 +1,4 @@
-package com.andurasoftware.alexandria.business.security.write.repositories.custom;
+package com.andurasoftware.alexandria.business.domain.write.repositories.custom;
 
 import com.andurasoftware.alexandria.business.domain.write.aggregates.LoanAggregate;
 

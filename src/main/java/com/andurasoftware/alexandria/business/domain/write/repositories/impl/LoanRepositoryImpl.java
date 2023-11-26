@@ -1,7 +1,7 @@
-package com.andurasoftware.alexandria.business.security.write.repositories.impl;
+package com.andurasoftware.alexandria.business.domain.write.repositories.impl;
 
 import com.andurasoftware.alexandria.business.domain.write.aggregates.LoanAggregate;
-import com.andurasoftware.alexandria.business.security.write.repositories.custom.LoanRepositoryCustom;
+import com.andurasoftware.alexandria.business.domain.write.repositories.custom.LoanRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
