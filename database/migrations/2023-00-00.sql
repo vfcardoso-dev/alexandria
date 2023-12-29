@@ -43,7 +43,12 @@ BEGIN
 		[version] DATETIME2(7) NULL
 	)
 END;
---TODO: Create FKs
+
+IF (OBJECT_ID('FK_Member_Address_id', 'F') IS NULL)
+BEGIN
+    ALTER TABLE [dbo].[member]
+        ADD CONSTRAINT FK_Member_Address_id FOREIGN KEY(address_id) REFERENCES [dbo].[address](id)
+END;
 
 
 IF OBJECT_ID('dbo.author', 'U') IS NULL
