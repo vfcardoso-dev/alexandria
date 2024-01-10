@@ -12,6 +12,8 @@ import java.util.UUID;
 public class MemberGridModel implements Model {
 
     @Id
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
     @Column
     private String name;

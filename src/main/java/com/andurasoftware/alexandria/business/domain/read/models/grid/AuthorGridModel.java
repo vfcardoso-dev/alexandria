@@ -3,10 +3,7 @@ package com.andurasoftware.alexandria.business.domain.read.models.grid;
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import org.springframework.data.annotation.Immutable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Immutable
@@ -15,13 +12,15 @@ import java.util.UUID;
 public class AuthorGridModel implements Model {
 
     @Id
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
     @Column
-    private String nome;
+    private String name;
     @Column
-    private String sobrenome;
+    private String lastName;
     @Column
-    private String pseudonimo;
+    private String pseudonym;
 
     @Override
     public UUID getId() {
@@ -33,27 +32,27 @@ public class AuthorGridModel implements Model {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getPseudonimo() {
-        return pseudonimo;
+    public String getPseudonym() {
+        return pseudonym;
     }
 
-    public void setPseudonimo(String pseudonimo) {
-        this.pseudonimo = pseudonimo;
+    public void setPseudonym(String pseudonym) {
+        this.pseudonym = pseudonym;
     }
 }

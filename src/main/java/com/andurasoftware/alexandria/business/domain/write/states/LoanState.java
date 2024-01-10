@@ -24,11 +24,11 @@ public class LoanState implements State {
     private Date returnDate;
 
     @ManyToOne
-    @JoinColumn(name="copy_id")
+    @JoinColumn(name="copy_id", columnDefinition = "uniqueidentifier")
     private CopyState copy;
 
     @ManyToOne
-    @JoinColumn(name="member_id")
+    @JoinColumn(name="member_id", columnDefinition = "uniqueidentifier")
     private MemberState member;
 
 

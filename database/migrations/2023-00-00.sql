@@ -2,13 +2,14 @@
 
 IF OBJECT_ID('dbo.user', 'U') IS NULL
 BEGIN
-	CREATE TABLE  [dbo].[user] 
+    CREATE TABLE  [dbo].[user]
 	(
 		id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
 		email VARCHAR(255) NULL,
+		enabled BIT NULL,
 		[name] VARCHAR(255) NOT NULL,
 		[password] VARCHAR(255) NOT NULL,
-		createdAt DATETIME2(7) NULL,
+		[role] VARCHAR(255) NULL,
 		[version] DATETIME2(7) NULL
 	)
 END;

@@ -15,7 +15,8 @@ import java.util.UUID;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class TitleModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
     @Column
     private String name;

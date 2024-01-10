@@ -11,7 +11,8 @@ import java.util.UUID;
 public class AddressState implements State {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
 
     @Column(nullable = false)

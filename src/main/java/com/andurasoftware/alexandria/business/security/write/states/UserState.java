@@ -14,7 +14,8 @@ import static javax.persistence.EnumType.STRING;
 public class UserState implements State {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
 
     @Column(nullable = false)
@@ -32,9 +33,6 @@ public class UserState implements State {
 
     @Column(nullable = false)
     private Boolean enabled = true;
-
-    @Column(nullable = false)
-    private Date createdAt;
 
     @Version()
     protected Date version;
@@ -85,14 +83,6 @@ public class UserState implements State {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
     }
 
     public Date getVersion() {

@@ -2,7 +2,6 @@ package com.andurasoftware.alexandria.business.domain.read.models;
 
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Immutable;
 
@@ -18,14 +17,15 @@ import java.util.UUID;
 public class AuthorModel implements Model {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
     @Column
-    private String nome;
+    private String name;
     @Column
-    private String sobrenome;
+    private String lastName;
     @Column
-    private String pseudonimo;
+    private String pseudonym;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -45,28 +45,28 @@ public class AuthorModel implements Model {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getPseudonimo() {
-        return pseudonimo;
+    public String getPseudonym() {
+        return pseudonym;
     }
 
-    public void setPseudonimo(String pseudonimo) {
-        this.pseudonimo = pseudonimo;
+    public void setPseudonym(String pseudonym) {
+        this.pseudonym = pseudonym;
     }
 
     public Set<TitleModel> getTitleSet() {

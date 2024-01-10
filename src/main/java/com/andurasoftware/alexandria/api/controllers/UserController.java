@@ -59,7 +59,7 @@ public class UserController {
 
     @RequestMapping(value = "/api/user/add", method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody UserState userState) {
-        userState.setCreatedAt(new Date());
+        userState.setVersion(new Date());
         userState.setPassword(this.encryptHelper.encryptPassword(userState.getPassword()));
 
         UserAggregate userAggregate = new UserAggregate(userState);

@@ -11,6 +11,8 @@ import java.util.UUID;
 @Table(name="[copy]")
 public class CopyModel {
     @Id
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id; //TODO: abstrair
 
     @Column

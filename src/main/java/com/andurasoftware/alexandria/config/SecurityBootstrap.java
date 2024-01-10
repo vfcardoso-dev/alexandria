@@ -52,7 +52,7 @@ public class SecurityBootstrap implements ApplicationListener<ApplicationReadyEv
         user.setName(name);
         user.setEmail(email);
         user.setPassword(this.encryptHelper.encryptPassword(password));
-        user.setCreatedAt(new Date());
+        user.setVersion(new Date());
         user.setEnabled(true);
         user.setRole(authority);
 

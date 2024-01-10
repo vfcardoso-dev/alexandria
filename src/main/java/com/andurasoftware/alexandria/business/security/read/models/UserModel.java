@@ -16,6 +16,8 @@ import static javax.persistence.EnumType.STRING;
 public class UserModel implements Model {
 
     @Id
+    @GeneratedValue
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
 
     @Column
@@ -35,7 +37,7 @@ public class UserModel implements Model {
     private Boolean enabled = true;
 
     @Column
-    private Date createdAt;
+    private Date version;
 
     @Override
     public UUID getId() {
@@ -87,11 +89,11 @@ public class UserModel implements Model {
         this.enabled = enabled;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getVersion() {
+        return version;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setVersion(Date version) {
+        this.version = version;
     }
 }
