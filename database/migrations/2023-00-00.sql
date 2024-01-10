@@ -94,7 +94,16 @@ BEGIN
 		member_id UNIQUEIDENTIFIER NOT NULL
 	)
 END;
---TODO: Create FKs
+IF (OBJECT_ID('FK_Loan_Copy_id', 'F') IS NULL)
+BEGIN
+    ALTER TABLE [dbo].[loan]
+        ADD CONSTRAINT FK_Loan_Copy_id FOREIGN KEY(copy_id) REFERENCES [dbo].[copy](id)
+END;
+IF (OBJECT_ID('FK_Loan_Member_id', 'F') IS NULL)
+BEGIN
+    ALTER TABLE [dbo].[loan]
+        ADD CONSTRAINT FK_Loan_Member_id FOREIGN KEY(member_id) REFERENCES [dbo].[member](id)
+END;
 
 IF OBJECT_ID('dbo.copy', 'U') IS NULL
 BEGIN
@@ -105,7 +114,11 @@ BEGIN
 		title_id UNIQUEIDENTIFIER NOT NULL
 	)
 END;
---TODO: Create FKs
+IF (OBJECT_ID('FK_Copy_Title_id', 'F') IS NULL)
+BEGIN
+    ALTER TABLE [dbo].[copy]
+        ADD CONSTRAINT FK_Copy_Title_id FOREIGN KEY(title_id) REFERENCES [dbo].[title](id)
+END;
 
 
 
