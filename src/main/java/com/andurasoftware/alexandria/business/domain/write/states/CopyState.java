@@ -13,7 +13,7 @@ public class CopyState implements State {
 
     @Id
     @GeneratedValue
-    /*@Column(name = "Id", columnDefinition = "uniqueidentifier")*/
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
 
     @Override

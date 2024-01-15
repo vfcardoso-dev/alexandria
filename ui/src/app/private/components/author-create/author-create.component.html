@@ -12,11 +12,24 @@
         </mat-form-field>
       </p>
       <p>
+        <mat-form-field>
+            <mat-label for="name">Sobrenome</mat-label>
+            <input matInput formControlName="lastName" placeholder="Sobrenome" type="text">            
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <mat-label for="name">Pseudônimo</mat-label>
+            <input matInput formControlName="pseudonym" placeholder="Pseudônimo" type="text">            
+        </mat-form-field>
+      </p>
+      <p>
         <button mat-flat-button 
                 color="primary" 
                 [disabled]="form.invalid"                
-                type="submit">Salvar
-        </button><!-- (click)="submit()" -->
+                type="submit"
+                (click)="submit()">Salvar
+        </button>
       </p>    
   
     </form>
