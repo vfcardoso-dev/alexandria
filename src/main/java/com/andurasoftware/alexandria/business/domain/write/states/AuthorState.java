@@ -1,6 +1,7 @@
 package com.andurasoftware.alexandria.business.domain.write.states;
 
 import com.andurasoftware.alexandria.business.common.interfaces.State;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,7 +13,8 @@ public class AuthorState implements State {
 
     @Id
     @GeneratedValue
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
+    @Column(name = "id", columnDefinition = "uniqueidentifier")
+    @Type(type = "uuid-char")
     private UUID id;
     @Column
     private String name;

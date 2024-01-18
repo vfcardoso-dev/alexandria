@@ -8,7 +8,7 @@ import { MainComponent } from "./components/main/main.component";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
-import { AutorListComponent } from "./components/autores/autores.component";
+import { AuthorListComponent } from "./components/author-list/author-list.component";
 import { AuthorCreateComponent } from "./components/author-create/author-create.component";
 import { UsuarioListComponent } from "./components/usuarios/usuarios.component";
 import { UsuarioCreateComponent } from "./components/usuario-create/usuario-create.component";
@@ -30,7 +30,7 @@ import { MatNativeDateModule } from "@angular/material/core";
         HeaderComponent,
         FooterComponent,
         LogoutComponent,
-        AutorListComponent,
+        AuthorListComponent,
         AuthorCreateComponent,
         UsuarioListComponent,
         UsuarioCreateComponent,

@@ -2,7 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
-import { AuthorGridModel } from "../autores/autores.component";
+import { AuthorGridModel } from "../author-list/author-list.component";
+
 
 
 
@@ -43,9 +44,9 @@ export class TitleListComponent implements OnInit{
         let authors: string = "";
         authorSet.forEach((author, index) => {            
             
-            authors = authors + author.nome + ' ' + author.sobrenome;
-            if(author.pseudonimo !== null)
-              authors = authors + ' (' + author.pseudonimo + ')'; 
+            authors = authors + author.name + ' ' + author.lastName;
+            if(author.pseudonym !== null)
+              authors = authors + ' (' + author.pseudonym + ')'; 
             
             if(index < authorSet.length-1){
               authors = authors + ',  ';                

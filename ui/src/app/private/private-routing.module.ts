@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AutorListComponent } from './components/autores/autores.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { MainComponent } from './components/main/main.component';
 import { UsuarioListComponent } from './components/usuarios/usuarios.component';
@@ -14,12 +13,13 @@ import { MemberListComponent } from './components/member-list/member-list.compon
 import { MemberCreateComponent } from './components/member-create/member-create.component';
 import { LoanListComponent } from './components/loan-list/loan-list.component';
 import { LoanCreateComponent } from './components/loan-create/loan-create.component';
+import { AuthorListComponent } from './components/author-list/author-list.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
     { path: 'main', component: MainComponent },
-    { path: 'biblioteca/autores', component: AutorListComponent },
-    { path: 'biblioteca/autores/criar', component: AuthorCreateComponent },
+    { path: 'library/author/list', component: AuthorListComponent },
+    { path: 'library/author/create', component: AuthorCreateComponent },
     { path: 'library/titles/list', component: TitleListComponent },
     { path: 'library/titles/create', component: TitleCreateComponent },
     { path: 'library/copies/list', component: CopyListComponent },

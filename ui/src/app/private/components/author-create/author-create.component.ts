@@ -46,7 +46,7 @@ export class AuthorCreateComponent implements OnInit{
 
         this.addAuthor(authorForm)
         .subscribe(            
-            () => this.router.navigate(['/app/library/copies/list'])
+            () => this.router.navigate(['/app/library/author/list'])
         );
        
     }

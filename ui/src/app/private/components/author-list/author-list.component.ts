@@ -7,24 +7,24 @@ import { environment } from "src/environments/environment";
 export interface AuthorGridModel{
 
     id:string;
-    nome:string;
-    sobrenome:string;
-    pseudonimo:string;    
+    name:string;
+    lastName:string;
+    pseudonym:string;    
 
 }
 
 @Component({
-    selector: 'autores',
-    templateUrl: './autores.component.html',
-    styleUrls: ['./autores.component.scss'],
+    selector: 'author-list',
+    templateUrl: './author-list.component.html',
+    styleUrls: ['./author-list.component.scss'],
 })
 
-export class AutorListComponent{
+export class AuthorListComponent{
 
     constructor(private http: HttpClient, private router:Router){}
 
     authorData: AuthorGridModel[] = [];  
-    displayedColumns: string[] = ['id', 'nome', 'pseudonimo'];
+    displayedColumns: string[] = ['id', 'name', 'pseudonym'];
     dataSource = this.authorData;
 
     public loadDisplayData = () => {
