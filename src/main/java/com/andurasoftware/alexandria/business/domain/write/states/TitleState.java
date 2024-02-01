@@ -18,7 +18,6 @@ public class TitleState implements State {
     @Column
     private String name;
 
-
     @Override
     public UUID getId() {
        return this.id;

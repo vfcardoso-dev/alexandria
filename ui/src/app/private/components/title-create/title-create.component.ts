@@ -7,7 +7,8 @@ import { environment } from "src/environments/environment";
 
 
 export interface TitleForm {
-    name: FormControl<string | null> 
+    name: FormControl<string | null>,
+    author: FormControl<string | null>
 }
 
 
@@ -20,16 +21,19 @@ export interface TitleForm {
 export class TitleCreateComponent implements OnInit{
 
     
+    public authors = ["AAAA", "BBB"];
 
     public form: FormGroup = new FormGroup<TitleForm>({ 
-        name: new FormControl('',[Validators.required])               
+        name: new FormControl('',[Validators.required]),
+        author: new FormControl('',[Validators.required])
     })
 
     
     constructor(private http: HttpClient, private router:Router){}
 
     ngOnInit() {      
-                          
+       this.authors.push("Saramago");
+       this.authors.push("Machado de Assis");
     }
 
     private handleError(error: HttpErrorResponse) {
@@ -54,8 +58,9 @@ export class TitleCreateComponent implements OnInit{
     }
 
     public submit = () => {
-        const name = this.form.get('name')?.value;        
-        const titleForm : TitleForm = {name:name};    
+        const name = this.form.get('name')?.value;
+        const author = this.form.get('author')?.value; 
+        const titleForm : TitleForm = {name:name, author: author};    
        
         this.addTitle(titleForm)
         .subscribe(            
