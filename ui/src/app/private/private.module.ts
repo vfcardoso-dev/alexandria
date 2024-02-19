@@ -41,7 +41,7 @@ import { MatNativeDateModule } from "@angular/material/core";
         MemberCreateComponent,
         MemberListComponent,
         LoanCreateComponent,
-        LoanListComponent        
+        LoanListComponent
     ],
     imports: [
         CommonModule,

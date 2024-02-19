@@ -5,6 +5,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +24,11 @@ public class AuthorState implements State {
     private String lastName;
     @Column
     private String pseudonym;
+
+
+    @ManyToMany(mappedBy = "authors")
+    private final Set<TitleState> titles = new HashSet<>();
+
     @Column
     private Date version;
 

@@ -8,7 +8,7 @@ import { environment } from "src/environments/environment";
 
 export interface TitleForm {
     name: FormControl<string | null>,
-    author: FormControl<string | null>
+    authors: FormControl<string[] | null>
 }
 
 
@@ -21,19 +21,22 @@ export interface TitleForm {
 export class TitleCreateComponent implements OnInit{
 
     
-    public authors = ["AAAA", "BBB"];
+    public authors = Array();
 
     public form: FormGroup = new FormGroup<TitleForm>({ 
         name: new FormControl('',[Validators.required]),
-        author: new FormControl('',[Validators.required])
+        authors: new FormControl(this.authors,[Validators.required])
     })
 
     
     constructor(private http: HttpClient, private router:Router){}
 
     ngOnInit() {      
-       this.authors.push("Saramago");
-       this.authors.push("Machado de Assis");
+       //TODO: Create Api classes        
+       this.http.post<any[]>(`${environment.apiUrl}/api/author/grid/list.json`, {  }).subscribe(data => {                                              
+        this.authors = data;
+      });
+       
     }
 
     private handleError(error: HttpErrorResponse) {
@@ -49,6 +52,7 @@ export class TitleCreateComponent implements OnInit{
         // Return an observable with a user-facing error message.
         return throwError(() => new Error('Something bad happened; please try again later.'));
     }
+    
 
     private addTitle(titleForm: TitleForm): Observable<any> {
         const headers = { 'content-type': 'application/json'}  
@@ -59,14 +63,14 @@ export class TitleCreateComponent implements OnInit{
 
     public submit = () => {
         const name = this.form.get('name')?.value;
-        const author = this.form.get('author')?.value; 
-        const titleForm : TitleForm = {name:name, author: author};    
-       
+        const authorIds = this.form.get('authors')?.value; 
+        const titleForm : TitleForm = {name:name, authors: authorIds.map((x:string)=> { return { id:x } })};      
+    
         this.addTitle(titleForm)
         .subscribe(            
                 () => this.router.navigate(['/app/library/titles/list'])
         );
-       
+           
     }
 
 }

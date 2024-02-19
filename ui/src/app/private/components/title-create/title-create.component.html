@@ -10,30 +10,22 @@
             <input matInput formControlName="name" placeholder="Nome" type="text">
             <mat-error *ngIf="form.get('nome')?.hasError('minlength')">Insira o nome</mat-error>
         </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Author</mat-label>
-          <input type="text"
-                 placeholder="Add"
-                 aria-label="author"
-                 matInput
-                 formControlName="author"
-                 [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let author of authors" [value]="author">
-              {{ author }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
       </p>
       <p>
+        <mat-form-field>
+          <mat-select placeholder="Autor" formControlName="authors" multiple>
+            <mat-option *ngFor="let author of authors" [value]="author.id">
+              {{ author.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
         <button mat-flat-button 
                 color="primary" 
                 (click)="submit()" 
                 [disabled]="form.invalid" 
                 type="submit">Salvar
-        </button>
-      </p>    
-  
+        </button>  
     </form>
   </div>
 </div>
