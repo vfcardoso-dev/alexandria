@@ -16,9 +16,24 @@ public class CopyState implements State {
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private UUID id;
 
+    @Column
+    private String code;
+
+    @Column
+    private Date version;
+
     @Override
     public UUID getId() {
         return this.id;
+    }
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
@@ -28,11 +43,11 @@ public class CopyState implements State {
 
     @Override
     public Date getVersion() {
-        return null;
+        return this.version;
     }
 
     @Override
     public void setVersion(Date version) {
-
+        this.version = version;
     }
 }

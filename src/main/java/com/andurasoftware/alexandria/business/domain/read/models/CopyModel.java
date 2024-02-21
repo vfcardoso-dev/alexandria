@@ -16,7 +16,7 @@ public class CopyModel {
     private UUID id; //TODO: abstrair
 
     @Column
-    private int number;
+    private String code;
 
     @ManyToOne(fetch = FetchType.EAGER,  cascade=CascadeType.ALL)
     @JoinColumn(name="title_id")
@@ -30,12 +30,12 @@ public class CopyModel {
         this.id = id;
     }
 
-    public int getNumber() {
-        return number;
+    public String getCode() {
+        return this.code;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setCode(String Code) {
+        this.code = code;
     }
 
     public TitleModel getTitleModel() {
