@@ -1,6 +1,7 @@
 package com.andurasoftware.alexandria.business.domain.read.models;
 
 import com.andurasoftware.alexandria.business.domain.read.models.TitleModel;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.Immutable;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class CopyModel {
     @Id
     @GeneratedValue
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
+    @Type(type = "uuid-char")
     private UUID id; //TODO: abstrair
 
     @Column
@@ -34,7 +36,7 @@ public class CopyModel {
         return this.code;
     }
 
-    public void setCode(String Code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

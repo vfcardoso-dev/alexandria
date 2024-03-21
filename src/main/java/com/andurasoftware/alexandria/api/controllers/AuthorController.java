@@ -4,7 +4,6 @@ import com.andurasoftware.alexandria.business.domain.read.models.grid.AuthorGrid
 import com.andurasoftware.alexandria.business.domain.read.repositories.base.AuthorGridReadRepository;
 import com.andurasoftware.alexandria.business.domain.write.aggregates.AuthorAggregate;
 import com.andurasoftware.alexandria.business.domain.write.repositories.base.AuthorRepository;
-import com.andurasoftware.alexandria.business.domain.write.repositories.impl.AuthorRepositoryImpl;
 import com.andurasoftware.alexandria.business.domain.write.states.AuthorState;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

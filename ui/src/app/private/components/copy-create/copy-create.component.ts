@@ -7,7 +7,8 @@ import { environment } from "src/environments/environment";
 
 
 export interface CopyForm {
-    name: FormControl<string | null> 
+    code: FormControl<string | null>, 
+    titleId: FormControl<string | null> 
 }
 
 
@@ -20,16 +21,20 @@ export interface CopyForm {
 export class CopyCreateComponent implements OnInit{
 
     
+    public titles = Array();
 
     public form: FormGroup = new FormGroup<CopyForm>({ 
-        name: new FormControl('',[Validators.required])               
+        code: new FormControl('',[Validators.required]),
+        titleId: new FormControl('',[Validators.required])
     })
 
     
     constructor(private http: HttpClient, private router:Router){}
 
     ngOnInit() {      
-                          
+        this.http.post<any[]>(`${environment.apiUrl}/api/title/grid/list.json`, {  }).subscribe(data => {                                              
+            this.titles = data;
+          });                     
     }
 
     //TODO:Abstrair
@@ -49,20 +54,20 @@ export class CopyCreateComponent implements OnInit{
 
     private addCopy(copyForm: CopyForm): Observable<any> {
         const headers = { 'content-type': 'application/json'}  
-        const body=JSON.stringify(copyForm);                
-        return this.http.post<CopyForm>(`${environment.apiUrl}/api/copy/add`, body,{'headers':headers})
+        const body = JSON.stringify(copyForm);                
+        return this.http.post<CopyForm>(`${environment.apiUrl}/api/copy/add`, body,{'headers': headers})
                         .pipe(catchError(this.handleError));                        
     }
 
     public submit = () => {
-        const name = this.form.get('name')?.value;        
-        const copyForm : CopyForm = {name:name};    
+        const code = this.form.get('code')?.value;
+        const titleId = this.form.get('titleId')?.value;
+        const copyForm : CopyForm = {code: code, titleId: titleId};
        
         this.addCopy(copyForm)
         .subscribe(            
                 () => this.router.navigate(['/app/library/copies/list'])
-        );
-       
+        );       
     }
 
 }
