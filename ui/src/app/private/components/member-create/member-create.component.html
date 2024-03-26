@@ -12,6 +12,33 @@
         </mat-form-field>
       </p>
       <p>
+        <mat-form-field>
+            <mat-label for="birthDate">Data de Nascimento</mat-label>
+            <input matInput formControlName="birthDate" placeholder="Data de Nascimento" type="date">            
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <mat-label for="email">E-Mail</mat-label>
+            <input matInput formControlName="email" placeholder="email" type="email">
+            <mat-error *ngIf="form.get('email')?.hasError('minlength')">Insira o e-mail</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <mat-label for="registrationNumber">CPF</mat-label>
+            <input matInput formControlName="registrationNumber" placeholder="CPF" type="text">
+            <mat-error *ngIf="form.get('registrationNumber')?.hasError('minlength')">Insira o CPF</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <mat-label for="occupation">Profissão</mat-label>
+            <input matInput formControlName="occupation" placeholder="Profissão" type="text">
+            <mat-error *ngIf="form.get('occupation')?.hasError('minlength')">Insira a profissão</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
         <button mat-flat-button 
                 color="primary" 
                 (click)="submit()" 

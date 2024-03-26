@@ -6,8 +6,11 @@ import { catchError, Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 
 
-export interface CopyForm {
-    name: FormControl<string | null> 
+export interface MemberForm {
+    name: FormControl<string | null>,
+    birthDate: FormControl<string | null>,
+    email: FormControl<string | null>,
+    registrationNumber: FormControl<string | null>
 }
 
 
@@ -21,8 +24,11 @@ export class MemberCreateComponent implements OnInit{
 
     
 
-    public form: FormGroup = new FormGroup<CopyForm>({ 
-        name: new FormControl('',[Validators.required])               
+    public form: FormGroup = new FormGroup<MemberForm>({ 
+        name: new FormControl('',[Validators.required]) ,
+        birthDate: new FormControl('',[Validators.required]),
+        email: new  FormControl('',[Validators.required]),
+        registrationNumber: new  FormControl('',[Validators.required])        
     })
 
     
@@ -47,20 +53,29 @@ export class MemberCreateComponent implements OnInit{
         return throwError(() => new Error('Something bad happened; please try again later.'));
     }
 
-    private addCopy(copyForm: CopyForm): Observable<any> {
+    private addMember(copyForm: MemberForm): Observable<any> {
         const headers = { 'content-type': 'application/json'}  
         const body=JSON.stringify(copyForm);                
-        return this.http.post<CopyForm>(`${environment.apiUrl}/api/copy/add`, body,{'headers':headers})
+        return this.http.post<MemberForm>(`${environment.apiUrl}/api/member/add`, body,{'headers':headers})
                         .pipe(catchError(this.handleError));                        
     }
 
     public submit = () => {
-        const name = this.form.get('name')?.value;        
-        const copyForm : CopyForm = {name:name};    
+        const name = this.form.get('name')?.value;
+        const birthDate = this.form.get('birthDate')?.value;
+        const email = this.form.get('email')?.value; 
+        const registrationNumber = this.form.get('registrationNumber')?.value;
+        const copyForm : MemberForm = 
+        {
+            name:name,
+            birthDate: birthDate,
+            email: email,
+            registrationNumber: registrationNumber
+        };    
        
-        this.addCopy(copyForm)
+        this.addMember(copyForm)
         .subscribe(            
-                () => this.router.navigate(['/app/library/copies/list'])
+                () => this.router.navigate(['/app/library/member/list'])
         );
        
     }
