@@ -75,7 +75,7 @@ export class MemberCreateComponent implements OnInit{
        
         this.addMember(copyForm)
         .subscribe(            
-                () => this.router.navigate(['/app/library/member/list'])
+                () => this.router.navigate(['/app/library/members/list'])
         );
        
     }
