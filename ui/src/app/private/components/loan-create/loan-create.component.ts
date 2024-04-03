@@ -87,7 +87,7 @@ export class LoanCreateComponent implements OnInit{
         const filterValue = input.value.toLowerCase();        
         this.filteredCopyData = 
             this.copyData.filter(m => 
-                m.number.toString().includes(filterValue) ||            
+                m.code.toString().includes(filterValue) ||     
                 m.titleModel.name.toLowerCase().includes(filterValue));         
     }
 
@@ -96,7 +96,7 @@ export class LoanCreateComponent implements OnInit{
     }
 
     public displayCopyName(copy: CopyListModel): string {
-        let name = '('+copy.number+') ';
+        let name = '(' + copy.code + ') ';
         name+= copy.titleModel.name+' ';         
         return name;
     }

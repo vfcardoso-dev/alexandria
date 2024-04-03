@@ -9,7 +9,7 @@ import { AuthorGridModel } from "../author-list/author-list.component";
 export interface CopyListModel{
 
     id: string;
-    number: string;    
+    code: string;    
     titleModel: TitleGridModel;
 }
 
