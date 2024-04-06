@@ -34,25 +34,6 @@ export class CopyListComponent implements OnInit{
           this.copyData = data;
         });
         
-        //Fake Data 
-        /*
-        this.copyData = 
-        [
-            {
-                id : '2cb5333d-9614-4377-9bfc-d5357037c8a3',
-                number: '10',
-                title: 'O Boto do Reno',
-                author: 'Flavio Gomes'
-            },
-            {
-                id : 'xj3xxyr5-9614-42xx-dbfc-d55550abc108',
-                number: '32',
-                title: 'engenharia de Software - Uma abordagem Profissional',
-                author: 'Roger Pressman'
-            }
-        ];
-        */
-        
     }
 
     //TODO:Abstrair

@@ -11,25 +11,29 @@
         <th mat-header-cell *matHeaderCellDef> id </th>
         <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
       </ng-container>      
-      <ng-container matColumnDef="member">
+      <ng-container matColumnDef="memberName">
         <th mat-header-cell *matHeaderCellDef> Membro </th>
-        <td mat-cell *matCellDef="let element"> {{ element.member }} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.memberName }} </td>
       </ng-container>
-      <ng-container matColumnDef="copy">
-        <th mat-header-cell *matHeaderCellDef> Exemplar </th>
-        <td mat-cell *matCellDef="let element"> {{ element.copy }} </td>
+      <ng-container matColumnDef="titleName">
+        <th mat-header-cell *matHeaderCellDef> Título </th>
+        <td mat-cell *matCellDef="let element"> {{ element.titleName }} </td>
+      </ng-container>  
+      <ng-container matColumnDef="copyCode">
+        <th mat-header-cell *matHeaderCellDef> Código </th>
+        <td mat-cell *matCellDef="let element"> {{ element.copyCode }} </td>
       </ng-container>  
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef> Data </th>
         <td mat-cell *matCellDef="let element"> {{ element.date }} </td>
-      </ng-container>  
+      </ng-container>
       <ng-container matColumnDef="expiringDate">
         <th mat-header-cell *matHeaderCellDef> Vencimento </th>
         <td mat-cell *matCellDef="let element"> {{ element.expiringDate }} </td>
-      </ng-container>
-      <ng-container matColumnDef="returningDate">
+      </ng-container> 
+      <ng-container matColumnDef="returnDate">
         <th mat-header-cell *matHeaderCellDef> Devolução </th>
-        <td mat-cell *matCellDef="let element"> {{ element.returningDate }} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.returnDate }} </td>
       </ng-container>          
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
