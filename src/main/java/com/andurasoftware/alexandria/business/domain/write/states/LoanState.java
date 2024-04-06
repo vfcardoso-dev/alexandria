@@ -1,6 +1,7 @@
 package com.andurasoftware.alexandria.business.domain.write.states;
 
 import com.andurasoftware.alexandria.business.common.interfaces.State;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,6 +14,7 @@ public class LoanState implements State {
     @Id
     @GeneratedValue
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
+    @Type(type = "uuid-char")
     private UUID id;
 
     @Column

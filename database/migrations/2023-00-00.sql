@@ -123,6 +123,24 @@ BEGIN
         ADD CONSTRAINT FK_Copy_Title_id FOREIGN KEY(title_id) REFERENCES [dbo].[title](id)
 END;
 
+--Views
+
+CREATE OR ALTER VIEW [dbo].[loan_grid_view] AS
+SELECT
+	ln.id               AS [id],
+	ln.[date]           AS [date],
+	ln.[expiring_date]  AS [expiring_date],
+	ln.[return_date]    AS [return_date],
+	cp.[id]	            AS [copy_id],
+	cp.[code]	        AS [copy_code],
+	tt.[name]           AS [title_name],
+	mb.[name]           AS [member_name]
+FROM
+	[dbo].[loan] ln
+	INNER JOIN [dbo].[copy] cp ON cp.id = ln.copy_id
+	INNER JOIN [dbo].[title] tt ON tt.id = cp.title_id
+	INNER JOIN [dbo].[member] mb ON mb.id = ln.member_id
+
 
 
 
