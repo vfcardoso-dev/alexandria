@@ -1,5 +1,8 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 
@@ -19,23 +22,42 @@ export interface LoanGridModel{
     templateUrl: './loan-list.component.html',
     styleUrls: ['./loan-list.component.scss'],
 })
-export class LoanListComponent implements OnInit{
+export class LoanListComponent implements AfterViewInit {
 
-    constructor(private http: HttpClient, private router: Router){}
 
-    loanData: LoanGridModel[] = [];  
+    public dataSource: MatTableDataSource<LoanGridModel>;
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+
     displayedColumns: string[] = ['id', 'memberName', 'titleName', 'copyCode', 'date', 'expiringDate', 'returnDate'];
-    dataSource = this.loanData;
     
-    
-    public loadDisplayData = () => {
-        this.http.post<LoanGridModel[]>(`${environment.apiUrl}/api/loan/grid/list.json`, {  }).subscribe(data => {                                              
-            this.loanData = data;
-          });
-    }     
-    
-    ngOnInit() {        
-        this.loadDisplayData();                  
+    constructor(private http: HttpClient, private router: Router){
+        this.dataSource = new MatTableDataSource<LoanGridModel>();        
     }
+                
+    public loadDisplayData = () => {        
+        this.http.post<LoanGridModel[]>(`${environment.apiUrl}/api/loan/grid/list.json`, {  }).subscribe(data => {                                                          
+            this.dataSource = new MatTableDataSource(data);
+        });     
+    }     
+        
+    ngAfterViewInit() {
+        this.loadDisplayData();   
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;        
+      }
+
+
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+           
+        if (this.dataSource.paginator) {
+          this.dataSource.paginator.firstPage();
+        }
+      }
+
+
 
 }    
