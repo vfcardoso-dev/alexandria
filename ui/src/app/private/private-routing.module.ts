@@ -27,6 +27,7 @@ const routes: Routes = [
     { path: 'library/members/list', component: MemberListComponent },
     { path: 'library/loans/list', component: LoanListComponent },
     { path: 'library/loan/create', component: LoanCreateComponent },
+    { path: 'library/loan/edit/:id', component: LoanCreateComponent },
     { path: 'library/member/create', component: MemberCreateComponent },
     { path: 'seguranca/usuarios', component: UsuarioListComponent },
     { path: 'seguranca/usuarios/criar', component: UsuarioCreateComponent },

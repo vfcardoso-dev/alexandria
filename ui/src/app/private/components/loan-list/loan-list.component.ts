@@ -30,7 +30,7 @@ export class LoanListComponent implements AfterViewInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    displayedColumns: string[] = ['id', 'memberName', 'titleName', 'copyCode', 'date', 'expiringDate', 'returnDate'];
+    displayedColumns: string[] = ['memberName', 'titleName', 'copyCode', 'date', 'expiringDate', 'returnDate'];
     
     constructor(private http: HttpClient, private router: Router){
         this.dataSource = new MatTableDataSource<LoanGridModel>();        
@@ -40,7 +40,13 @@ export class LoanListComponent implements AfterViewInit {
         this.http.post<LoanGridModel[]>(`${environment.apiUrl}/api/loan/grid/list.json`, {  }).subscribe(data => {                                                          
             this.dataSource = new MatTableDataSource(data);
         });     
-    }     
+    }  
+    
+    /*
+    public editLoan(row: any){
+        console.log(row);
+    }
+    */
         
     ngAfterViewInit() {
         this.loadDisplayData();   

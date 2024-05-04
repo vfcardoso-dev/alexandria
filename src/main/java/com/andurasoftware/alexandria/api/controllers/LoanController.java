@@ -7,14 +7,14 @@ import com.andurasoftware.alexandria.business.domain.write.aggregates.LoanAggreg
 import com.andurasoftware.alexandria.business.domain.write.states.LoanState;
 import com.andurasoftware.alexandria.business.domain.write.repositories.base.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class LoanController {
@@ -36,6 +36,14 @@ public class LoanController {
     public ResponseEntity<?> displayAll() {
         List<LoanGridViewModel> loanGridViewModelList = this.loanGridReadRepository.findAll();
         return ResponseEntity.ok(loanGridViewModelList);
+    }
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/api/loan/get-by-id.json", method = RequestMethod.GET)
+    public ResponseEntity<?> getById(@RequestParam String id) {
+        UUID uuid = UUID.fromString(id);
+        LoanGridViewModel loanGridViewModel = this.loanGridReadRepository.getById(uuid);
+        return ResponseEntity.ok(new LoanGridViewModel());
     }
 
 }

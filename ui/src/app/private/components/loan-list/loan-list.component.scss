@@ -17,6 +17,10 @@
       width: 25%;
     }
 
+    tr {
+      cursor: pointer;
+    }
+
     @media screen and (max-width: 960px) {
       table {
         border: 0;

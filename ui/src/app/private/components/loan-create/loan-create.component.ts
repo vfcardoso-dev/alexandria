@@ -1,12 +1,13 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { catchError, filter, Observable, throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 import { MemberGridListModel } from "../member-list/member-list.component";
 import { CopyListModel } from "../copy-list/copy-list.component";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import { LoanGridModel } from "../loan-list/loan-list.component";
 
 
 
@@ -35,6 +36,8 @@ export class LoanCreateComponent implements OnInit{
 
     memberId: string;
     copyId: string;
+    loanId: string | null;
+    loanData: LoanGridModel | null;
 
     //today's date
     todayDate: Date = new Date();
@@ -47,13 +50,27 @@ export class LoanCreateComponent implements OnInit{
         date: new FormControl(this.selectedDate,[Validators.required])
     })
     
-    constructor(private http: HttpClient, private router:Router){ 
+    constructor(private http: HttpClient, private router:Router, private activatedRoute : ActivatedRoute){ 
         this.filteredMemberData = this.memberData.slice();     
     }
 
     ngOnInit() {      
         this.loadMemberData();
-        this.loadCopyData();                   
+        this.loadCopyData();   
+        
+        this.loanId = this.activatedRoute.snapshot.paramMap.get("id");
+        if(this.loanId){
+            this.loadLoanData();
+        }
+    }
+
+    public loadLoanData = () => {
+        
+        const headers = new HttpHeaders().append('Content-Type', 'application/json');
+        const params = new HttpParams().append('id', this.loanId ? this.loanId : '');
+        this.http.get<any>(`${environment.apiUrl}/api/loan/get-by-id.json`, {headers, params}).subscribe(data => {                                              
+            console.log(data);
+          });
     }
 
     public loadMemberData = () => {
