@@ -43,7 +43,7 @@ public class LoanController {
     public ResponseEntity<?> getById(@RequestParam String id) {
         UUID uuid = UUID.fromString(id);
         LoanGridViewModel loanGridViewModel = this.loanGridReadRepository.getById(uuid);
-        return ResponseEntity.ok(new LoanGridViewModel());
+        return ResponseEntity.ok(loanGridViewModel);
     }
 
 }

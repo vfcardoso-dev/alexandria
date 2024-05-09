@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import { DateAdapter } from "@angular/material/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -12,8 +13,8 @@ export interface LoanGridModel{
     titleName: string;
     copyId: string;
     copyCode: string;
-    date: string;
-    expiringDate: string;
+    date: Date;
+    expiringDate: Date;
     returnDate:string;    				
 }
 
@@ -32,12 +33,14 @@ export class LoanListComponent implements AfterViewInit {
 
     displayedColumns: string[] = ['memberName', 'titleName', 'copyCode', 'date', 'expiringDate', 'returnDate'];
     
-    constructor(private http: HttpClient, private router: Router){
+    constructor(private http: HttpClient, private router: Router, private dateAdapter: DateAdapter<Date>){
+        this.dateAdapter.setLocale('pt-BR'); //dd/MM/yyyy
         this.dataSource = new MatTableDataSource<LoanGridModel>();        
     }
                 
     public loadDisplayData = () => {        
         this.http.post<LoanGridModel[]>(`${environment.apiUrl}/api/loan/grid/list.json`, {  }).subscribe(data => {                                                          
+            console.log(data);
             this.dataSource = new MatTableDataSource(data);
         });     
     }  

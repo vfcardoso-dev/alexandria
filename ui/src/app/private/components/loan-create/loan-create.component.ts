@@ -8,6 +8,7 @@ import { MemberGridListModel } from "../member-list/member-list.component";
 import { CopyListModel } from "../copy-list/copy-list.component";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { LoanGridModel } from "../loan-list/loan-list.component";
+import { DateAdapter } from "@angular/material/core";
 
 
 
@@ -48,9 +49,10 @@ export class LoanCreateComponent implements OnInit{
         member: new FormControl('',[Validators.required]),
         copy: new FormControl('',[Validators.required]),
         date: new FormControl(this.selectedDate,[Validators.required])
-    })
+    });
     
-    constructor(private http: HttpClient, private router:Router, private activatedRoute : ActivatedRoute){ 
+    constructor(private http: HttpClient, private router:Router, private activatedRoute : ActivatedRoute, private dateAdapter: DateAdapter<Date>){ 
+        this.dateAdapter.setLocale('pt-BR'); //dd/MM/yyyy
         this.filteredMemberData = this.memberData.slice();     
     }
 
@@ -68,8 +70,13 @@ export class LoanCreateComponent implements OnInit{
         
         const headers = new HttpHeaders().append('Content-Type', 'application/json');
         const params = new HttpParams().append('id', this.loanId ? this.loanId : '');
-        this.http.get<any>(`${environment.apiUrl}/api/loan/get-by-id.json`, {headers, params}).subscribe(data => {                                              
-            console.log(data);
+        this.http.get<LoanGridModel>(`${environment.apiUrl}/api/loan/get-by-id.json`, {headers, params}).subscribe(data => {                                                          
+            console.log(data); 
+            this.form = new FormGroup<LoanForm>({ 
+                member: new FormControl(data.memberName,[Validators.required]),
+                copy: new FormControl(data.titleName,[Validators.required]),
+                date: new FormControl(new Date(data.date),[Validators.required])
+            });
           });
     }
 
@@ -152,8 +159,18 @@ export class LoanCreateComponent implements OnInit{
         this.addLoan(loanObject)
         .subscribe(            
                 () => this.router.navigate(['/app/library/loans/list'])
-        );        
-       
+        );               
     }
+
+    
+    private formatDate(date : string): string{
+
+        var ret = date.substring(0,10);
+        ret = ret.replace('-','/').replace('-','/');           
+        console.log(ret);
+        return ret;
+
+    }
+    
 
 }
