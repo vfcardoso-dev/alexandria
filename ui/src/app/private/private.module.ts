@@ -21,6 +21,7 @@ import { MemberListComponent } from "./components/member-list/member-list.compon
 import { LoanListComponent } from "./components/loan-list/loan-list.component";
 import { LoanCreateComponent } from "./components/loan-create/loan-create.component";
 import { MatNativeDateModule } from "@angular/material/core";
+import { PaymentListComponent } from "./components/payment-list/payment-list.component";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MatNativeDateModule } from "@angular/material/core";
         MemberCreateComponent,
         MemberListComponent,
         LoanCreateComponent,
-        LoanListComponent
+        LoanListComponent,
+        PaymentListComponent
     ],
     imports: [
         CommonModule,

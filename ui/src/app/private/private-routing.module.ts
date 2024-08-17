@@ -14,6 +14,7 @@ import { MemberCreateComponent } from './components/member-create/member-create.
 import { LoanListComponent } from './components/loan-list/loan-list.component';
 import { LoanCreateComponent } from './components/loan-create/loan-create.component';
 import { AuthorListComponent } from './components/author-list/author-list.component';
+import { PaymentListComponent } from './components/payment-list/payment-list.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
@@ -29,6 +30,7 @@ const routes: Routes = [
     { path: 'library/loan/create', component: LoanCreateComponent },
     { path: 'library/loan/edit/:id', component: LoanCreateComponent },
     { path: 'library/member/create', component: MemberCreateComponent },
+    { path: 'library/payment/list', component: PaymentListComponent },
     { path: 'seguranca/usuarios', component: UsuarioListComponent },
     { path: 'seguranca/usuarios/criar', component: UsuarioCreateComponent },
     { path: 'logout', component: LogoutComponent }
