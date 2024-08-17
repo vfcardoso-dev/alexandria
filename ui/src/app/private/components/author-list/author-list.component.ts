@@ -24,7 +24,7 @@ export class AuthorListComponent{
     constructor(private http: HttpClient, private router:Router){}
 
     authorData: AuthorGridModel[] = [];  
-    displayedColumns: string[] = ['id', 'name', 'pseudonym'];
+    displayedColumns: string[] = ['name', 'pseudonym'];
     dataSource = this.authorData;
 
     public loadDisplayData = () => {
