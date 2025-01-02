@@ -61,6 +61,5 @@ public class TitleState implements State {
 
     @Override
     public void setVersion(Date version) {
-
     }
 }

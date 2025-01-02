@@ -123,6 +123,18 @@ BEGIN
         ADD CONSTRAINT FK_Copy_Title_id FOREIGN KEY(title_id) REFERENCES [dbo].[title](id)
 END;
 
+IF OBJECT_ID('dbo.payment', 'U') IS NULL
+BEGIN
+	CREATE TABLE  [dbo].[payment]
+	(
+		[id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
+		[status] VARCHAR(50) NULL,
+		[version] DATETIME2(7) NULL
+	)
+END;
+
+
+
 --Views
 
 CREATE OR ALTER VIEW [dbo].[loan_grid_view] AS
