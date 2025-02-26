@@ -1,7 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { PaymentInsertDialog } from "../payment-insert-dialog/payment-insert-dialog.component";
 
 export interface PaymentGridListModel {
 
@@ -16,7 +18,7 @@ export interface PaymentGridListModel {
 })
 export class PaymentListComponent implements OnInit {
     
-    constructor(private http: HttpClient, private router:Router){}
+    constructor(private http: HttpClient, private router:Router, public dialog: MatDialog){}
 
     paymentData: PaymentGridListModel[] = [];  
     displayedColumns: string[] = ['id', 'name'];
@@ -30,6 +32,14 @@ export class PaymentListComponent implements OnInit {
     
     ngOnInit(): void {
         this.loadDisplayData();
+    }
+
+    openDialog(): void {
+        const dialogRef = this.dialog.open(PaymentInsertDialog);
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });        
     }
 
 }

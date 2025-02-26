@@ -22,6 +22,8 @@ import { LoanListComponent } from "./components/loan-list/loan-list.component";
 import { LoanCreateComponent } from "./components/loan-create/loan-create.component";
 import { MatNativeDateModule } from "@angular/material/core";
 import { PaymentListComponent } from "./components/payment-list/payment-list.component";
+import { PaymentInsertDialog } from "./components/payment-insert-dialog/payment-insert-dialog.component";
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material/dialog";
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { PaymentListComponent } from "./components/payment-list/payment-list.com
         MemberListComponent,
         LoanCreateComponent,
         LoanListComponent,
-        PaymentListComponent
+        PaymentListComponent,
+        PaymentInsertDialog
     ],
     imports: [
         CommonModule,
@@ -51,7 +54,10 @@ import { PaymentListComponent } from "./components/payment-list/payment-list.com
         ReactiveFormsModule,
         PrivateRoutingModule,
         MatNativeDateModule,
+        MatDialogModule 
     ],
-    providers: []
+    providers: [
+        { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }
+      ]
 })
 export class PrivateModule { }
