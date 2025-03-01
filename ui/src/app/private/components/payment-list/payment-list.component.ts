@@ -35,7 +35,10 @@ export class PaymentListComponent implements OnInit {
     }
 
     openDialog(): void {
-        const dialogRef = this.dialog.open(PaymentInsertDialog);
+        const dialogRef = this.dialog.open(PaymentInsertDialog, {
+            height: '400px',
+            width: '600px',
+        });
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);

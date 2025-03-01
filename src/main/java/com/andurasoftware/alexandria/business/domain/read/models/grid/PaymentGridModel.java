@@ -21,6 +21,9 @@ public class PaymentGridModel implements Model {
     @Type(type = "uuid-char")
     private UUID id;
 
+    @Column(name = "[date]")
+    private Date date;
+
     @Column
     private String status;
 
@@ -34,6 +37,10 @@ public class PaymentGridModel implements Model {
 
     @Override
     public void setId(UUID id) {  this.id = id; }
+
+    public Date getDate() { return date;  }
+
+    public void setDate(Date date) { this.date = date; }
 
     public String getStatus() { return status; }
 
