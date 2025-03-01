@@ -2,6 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
+import { AuthorInsertDialog } from "../author-insert-dialog/author-insert-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 
 export interface AuthorGridModel{
@@ -21,7 +23,11 @@ export interface AuthorGridModel{
 
 export class AuthorListComponent{
 
-    constructor(private http: HttpClient, private router:Router){}
+    constructor(
+      private http: HttpClient, 
+      private router: Router,
+      public dialog: MatDialog
+    ){}
 
     authorData: AuthorGridModel[] = [];  
     displayedColumns: string[] = ['name', 'pseudonym'];
@@ -29,14 +35,26 @@ export class AuthorListComponent{
 
     public loadDisplayData = () => {
 
-        this.http.post<AuthorGridModel[]>(`${environment.apiUrl}/api/author/grid/list.json`, {  }).subscribe(data => {                                              
-          this.authorData = data;
-        });
+      this.http.post<AuthorGridModel[]>(`${environment.apiUrl}/api/author/grid/list.json`, {  }).subscribe(data => {                                              
+        this.authorData = data;
+      });
         
-      }
+    }
   
-      ngOnInit() {        
-        this.loadDisplayData();                  
-      }
+    ngOnInit() {        
+      this.loadDisplayData();                  
+    }
+
+    openDialog(): void {
+        const dialogRef = this.dialog.open(AuthorInsertDialog, {
+            height: '400px',
+            width: '600px',
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            //console.log(`Dialog result: ${result}`);
+        });        
+    }
+    
     
 }

@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>{{isNew? 'Inserir Autor' : 'Editar Autor'}}</h2>
+<mat-dialog-content class="mat-typography">
+    <div style="padding:10px;">   
+        <form [formGroup]="form">
+        <p>
+            <mat-form-field>
+                <mat-label for="name">Nome</mat-label>
+                <input matInput formControlName="name" placeholder="Nome" type="text">
+                <mat-error *ngIf="form.get('nome')?.hasError('minlength')">Insira o nome</mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label for="name">Sobrenome</mat-label>
+                <input matInput formControlName="lastName" placeholder="Sobrenome" type="text">            
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <mat-label for="name">Pseudônimo</mat-label>
+                <input matInput formControlName="pseudonym" placeholder="Pseudônimo" type="text">            
+            </mat-form-field>
+        </p>        
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button 
+        mat-button 
+        [mat-dialog-close]="true" 
+        [disabled]="form.invalid"  
+        cdkFocusInitial
+        (click)="submit()">Salvar</button>
+</mat-dialog-actions>

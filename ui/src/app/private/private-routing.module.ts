@@ -4,7 +4,6 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { MainComponent } from './components/main/main.component';
 import { UsuarioListComponent } from './components/usuarios/usuarios.component';
 import { UsuarioCreateComponent } from './components/usuario-create/usuario-create.component';
-import { AuthorCreateComponent } from './components/author-create/author-create.component';
 import { TitleListComponent } from './components/title-list/title-list.component';
 import { TitleCreateComponent } from './components/title-create/title-create.component';
 import { CopyListComponent } from './components/copy-list/copy-list.component';
@@ -20,7 +19,6 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/app/main' },
     { path: 'main', component: MainComponent },
     { path: 'library/author/list', component: AuthorListComponent },
-    { path: 'library/author/create', component: AuthorCreateComponent },
     { path: 'library/titles/list', component: TitleListComponent },
     { path: 'library/titles/create', component: TitleCreateComponent },
     { path: 'library/copies/list', component: CopyListComponent },
