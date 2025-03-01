@@ -12,8 +12,11 @@ import  {MAT_DIALOG_DATA } from '@angular/material/dialog';
     
     public form = this.formBuilder.group({
         id:[null],
+        date: [null],
         status:[null, Validators.required]
     });
+
+    public isNew: boolean = true;
     
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) {}
   

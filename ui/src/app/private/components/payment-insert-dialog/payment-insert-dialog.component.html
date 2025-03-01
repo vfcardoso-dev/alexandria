@@ -1,21 +1,27 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>{{isNew? 'Inserir Pagamento' : 'Editar Pagamento'}}</h2>
 <mat-dialog-content class="mat-typography">
-  <h1>Inserir Pagamento</h1>
-  <div class="example-container mat-elevation-z8">
-    <div style="padding:10px;">   
-      <form>
-        <p>
-          <mat-form-field>
-              <mat-label for="name">Status</mat-label>
-              <input matInput formControlName="status" placeholder="status" type="text">
-              <mat-error *ngIf="form.get('status')?.hasError('minlength')">Insira o status</mat-error>
-          </mat-form-field>
-        </p>              
-      </form>
-    </div>
+  <div style="padding:10px;">   
+    <form>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Data do Pagamento</mat-label>
+          <input matInput formControlName="date" [matDatepicker]="picker">
+          <mat-hint>DD/MM/AAAA</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <mat-label for="name">Status</mat-label>
+            <input matInput formControlName="status" placeholder="status" type="text">
+            <mat-error *ngIf="form.get('status')?.hasError('minlength')">Insira o status</mat-error>
+        </mat-form-field>
+      </p>              
+    </form>
   </div>
 </mat-dialog-content>
-<mat-dialog-actions >
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Salvar</button>
 </mat-dialog-actions>

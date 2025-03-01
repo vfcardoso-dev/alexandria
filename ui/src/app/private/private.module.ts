@@ -9,7 +9,6 @@ import { LogoutComponent } from "./components/logout/logout.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { AuthorListComponent } from "./components/author-list/author-list.component";
-import { AuthorCreateComponent } from "./components/author-create/author-create.component";
 import { UsuarioListComponent } from "./components/usuarios/usuarios.component";
 import { UsuarioCreateComponent } from "./components/usuario-create/usuario-create.component";
 import { TitleListComponent } from "./components/title-list/title-list.component";
@@ -24,6 +23,7 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { PaymentListComponent } from "./components/payment-list/payment-list.component";
 import { PaymentInsertDialog } from "./components/payment-insert-dialog/payment-insert-dialog.component";
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material/dialog";
+import { AuthorInsertDialog } from "./components/author-insert-dialog/author-insert-dialog.component";
 
 
 @NgModule({
@@ -33,8 +33,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material/d
         HeaderComponent,
         FooterComponent,
         LogoutComponent,
-        AuthorListComponent,
-        AuthorCreateComponent,
+        AuthorListComponent,        
         UsuarioListComponent,
         UsuarioCreateComponent,
         TitleListComponent,
@@ -46,7 +45,8 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material/d
         LoanCreateComponent,
         LoanListComponent,
         PaymentListComponent,
-        PaymentInsertDialog
+        PaymentInsertDialog,
+        AuthorInsertDialog
     ],
     imports: [
         CommonModule,
