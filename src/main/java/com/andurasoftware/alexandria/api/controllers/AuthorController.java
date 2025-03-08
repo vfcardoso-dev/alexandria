@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -39,11 +40,25 @@ public class AuthorController {
         return ResponseEntity.ok(authorAggregate.getState());
     }
 
+
+    @RequestMapping(value = "/api/author/update", method = RequestMethod.POST)
+    public ResponseEntity<?> update(@RequestBody @NotNull AuthorState authorState) {
+        authorState.setVersion(new Date());
+        Optional<AuthorState> opt = this.authorRepository.findById(authorState.getId());
+        if(opt.isEmpty()){
+            return (ResponseEntity<?>) ResponseEntity.notFound();
+        }
+        AuthorAggregate authorAggregate = new AuthorAggregate(opt.get());
+        authorAggregate.update(authorState);
+        this.authorRepository.save(authorAggregate);
+        return ResponseEntity.ok(authorAggregate.getState());
+    }
+
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/api/author/get-by-id", method = RequestMethod.GET)
     public ResponseEntity<?> getById(@RequestParam String id) {
         UUID uuid = UUID.fromString(id);
-        AuthorGridModel model = this.authorGridReadRepository.getById(uuid);
+        AuthorGridModel model = this.authorGridReadRepository.findById(uuid);
         return ResponseEntity.ok(model);
     }
 

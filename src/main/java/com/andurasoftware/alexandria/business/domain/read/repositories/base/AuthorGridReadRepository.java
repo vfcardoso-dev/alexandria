@@ -4,9 +4,10 @@ import com.andurasoftware.alexandria.business.domain.read.models.grid.AuthorGrid
 import org.springframework.data.repository.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface AuthorGridReadRepository extends Repository<AuthorGridModel, UUID> {
     List<AuthorGridModel> findAll();
-    AuthorGridModel getById(UUID id);
+    AuthorGridModel findById(UUID id);
 }

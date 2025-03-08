@@ -38,24 +38,20 @@ import { environment } from "src/environments/environment";
             
             const headers = new HttpHeaders().append('Content-Type', 'application/json');
             const params = new HttpParams().append('id', this.data.id );
-            this.http.get(`${environment.apiUrl}/api/author/get-by-id`, {headers, params}).subscribe(data => {                                                                                   
-                        console.log(data);
+            this.http
+                .get(
+                    `${environment.apiUrl}/api/author/get-by-id`, 
+                    {headers, params})
+                    .subscribe((data: any) => { 
                         
-                        /*this.form.setValue({
+                        this.form.setValue({
                             id: data.id,
                             name: data.name,
                             lastName: data.lastName,
                             pseudonym: data.pseudonym
-                        });*/
+                        });
                         
-                        
-                        /*this.form = new FormGroup<LoanForm>({ 
-                            member: new FormControl(data.memberName,[Validators.required]),
-                            copy: new FormControl(data.titleName,[Validators.required]),
-                            date: new FormControl(new Date(data.date),[Validators.required])
-                        });*/
-                      });
-
+                });
         }
         
         
@@ -65,23 +61,25 @@ import { environment } from "src/environments/environment";
     public submit = () => {
         
         const cmd = { ...this.form.getRawValue() };
-        
-        this.addAuthor(cmd)
+                
+        this.persistAuthor(cmd)
         .subscribe({
             next: (v) => {
                 this.snackbar.open('Autor salvo com sucesso');
                 this.dialogRef.close();
-            },
-            error: (e) => this.snackbar.open(e),
-            complete: () => console.info('complete') 
+        },
+            error: (e) => this.snackbar.open("Não foi possível salvar o autor"),
+            complete: () => {}
         });
-        
+                               
     }
-            
-    private addAuthor(authorForm: any): Observable<any> {
+    
+    
+    private persistAuthor(authorForm: any): Observable<any> {
         const headers = { 'content-type': 'application/json'}  
-        const body=JSON.stringify(authorForm);                
-        return this.http.post(`${environment.apiUrl}/api/author/add`, body,{'headers':headers});                        
+        const body=JSON.stringify(authorForm); 
+        const url = this.isNew ? '/api/author/add' : '/api/author/update';                
+        return this.http.post(`${environment.apiUrl}${url}`, body,{'headers':headers});                        
     }
-
+      
   }   
