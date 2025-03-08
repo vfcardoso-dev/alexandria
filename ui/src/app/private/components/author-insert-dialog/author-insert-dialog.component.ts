@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
@@ -32,7 +32,33 @@ import { environment } from "src/environments/environment";
     
     
     ngOnInit(): void {
-        this.isNew = this.data?.id ? false : true;                
+        this.isNew = this.data?.id ? false : true;
+        
+        if(!this.isNew){
+            
+            const headers = new HttpHeaders().append('Content-Type', 'application/json');
+            const params = new HttpParams().append('id', this.data.id );
+            this.http.get(`${environment.apiUrl}/api/author/get-by-id`, {headers, params}).subscribe(data => {                                                                                   
+                        console.log(data);
+                        
+                        /*this.form.setValue({
+                            id: data.id,
+                            name: data.name,
+                            lastName: data.lastName,
+                            pseudonym: data.pseudonym
+                        });*/
+                        
+                        
+                        /*this.form = new FormGroup<LoanForm>({ 
+                            member: new FormControl(data.memberName,[Validators.required]),
+                            copy: new FormControl(data.titleName,[Validators.required]),
+                            date: new FormControl(new Date(data.date),[Validators.required])
+                        });*/
+                      });
+
+        }
+        
+        
     }    
 
     

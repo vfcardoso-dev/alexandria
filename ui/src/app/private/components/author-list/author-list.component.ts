@@ -45,16 +45,18 @@ export class AuthorListComponent{
       this.loadDisplayData();                  
     }
 
-    openDialog(): void {
-        const dialogRef = this.dialog.open(AuthorInsertDialog, {
-            height: '400px',
-            width: '600px',
+    openDialog(id?: string): void {
+        const dialogRef = this.dialog.open(AuthorInsertDialog, {            
+          data: { id: id },
+          height: '400px',
+          width: '600px'
         });
 
         dialogRef.afterClosed().subscribe(result => {
             //console.log(`Dialog result: ${result}`);
         });        
     }
+
     
     
 }

@@ -9,13 +9,11 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class AuthorController {
@@ -39,6 +37,14 @@ public class AuthorController {
         AuthorAggregate authorAggregate = new AuthorAggregate(authorState);
         this.authorRepository.save(authorAggregate);
         return ResponseEntity.ok(authorAggregate.getState());
+    }
+
+    @PreAuthorize("permitAll()")
+    @RequestMapping(value = "/api/author/get-by-id", method = RequestMethod.GET)
+    public ResponseEntity<?> getById(@RequestParam String id) {
+        UUID uuid = UUID.fromString(id);
+        AuthorGridModel model = this.authorGridReadRepository.getById(uuid);
+        return ResponseEntity.ok(model);
     }
 
 }

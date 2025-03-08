@@ -8,4 +8,5 @@ import java.util.UUID;
 
 public interface AuthorGridReadRepository extends Repository<AuthorGridModel, UUID> {
     List<AuthorGridModel> findAll();
+    AuthorGridModel getById(UUID id);
 }
