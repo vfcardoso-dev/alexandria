@@ -42,7 +42,7 @@ export class TitleListComponent implements OnInit{
 
     public displayAuthors(authorSet: AuthorGridModel[]): string{
         let authors: string = "";
-        authorSet.forEach((author, index) => {            
+        authorSet?.forEach((author, index) => {            
             
             authors = authors + author.name + ' ' + author.lastName;
             if(author.pseudonym !== null)
