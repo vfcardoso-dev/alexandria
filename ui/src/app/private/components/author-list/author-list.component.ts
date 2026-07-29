@@ -53,7 +53,7 @@ export class AuthorListComponent{
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            //console.log(`Dialog result: ${result}`);
+           this.loadDisplayData();
         });        
     }
 
