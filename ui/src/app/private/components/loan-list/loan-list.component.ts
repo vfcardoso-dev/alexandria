@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { DateAdapter } from "@angular/material/core";
-import { MatPaginator } from "@angular/material/paginator";
+import { MatLegacyPaginator as MatPaginator } from "@angular/material/legacy-paginator";
 import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatLegacyTableDataSource as MatTableDataSource } from "@angular/material/legacy-table";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 
