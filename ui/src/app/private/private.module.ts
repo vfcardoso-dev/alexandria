@@ -22,8 +22,8 @@ import { LoanCreateComponent } from "./components/loan-create/loan-create.compon
 import { MatNativeDateModule } from "@angular/material/core";
 import { PaymentListComponent } from "./components/payment-list/payment-list.component";
 import { PaymentInsertDialog } from "./components/payment-insert-dialog/payment-insert-dialog.component";
-import { MAT_LEGACY_DIALOG_DEFAULT_OPTIONS as MAT_DIALOG_DEFAULT_OPTIONS, MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
 import { AuthorInsertDialog } from "./components/author-insert-dialog/author-insert-dialog.component";
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material/dialog";
 
 
 @NgModule({
