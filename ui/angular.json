@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "alexandria-ui:build:production"
+              "buildTarget": "alexandria-ui:build:production"
             },
             "development": {
-              "browserTarget": "alexandria-ui:build:development"
+              "buildTarget": "alexandria-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "alexandria-ui:build"
+            "buildTarget": "alexandria-ui:build"
           }
         },
         "test": {
