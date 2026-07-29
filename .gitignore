@@ -31,7 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### Angular Generatied Files ###
-/ui/package-lock.json
-/ui/node_modules/
