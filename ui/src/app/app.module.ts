@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,23 +11,25 @@ import { InvalidAuthInterceptor } from './shared/interceptors/invalid-auth.inter
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
 import { PrivateGuard } from './shared/guards/private.guard';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-  ],
-  providers: [
-    PrivateGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: InvalidAuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
+@NgModule({ 
+    declarations: [
+        AppComponent
+    ],
+    bootstrap: [
+        AppComponent
+    ], 
+    imports: [
+        CommonModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MaterialModule
+    ], 
+    providers: [
+        PrivateGuard,
+        { provide: HTTP_INTERCEPTORS, useClass: InvalidAuthInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi())
+    ] 
 })
 export class AppModule { }
