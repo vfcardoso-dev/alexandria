@@ -11,7 +11,8 @@ export interface LoginForm { email: FormControl<string | null>, password: FormCo
 @Component({
     selector: 'signin',
     templateUrl: './signin.component.html',
-    styleUrls: ['./signin.component.scss']
+    styleUrls: ['./signin.component.scss'],
+    standalone: false
 })
 export class SigninComponent implements OnInit {
 

@@ -19,6 +19,7 @@ export interface AuthorGridModel{
     selector: 'author-list',
     templateUrl: './author-list.component.html',
     styleUrls: ['./author-list.component.scss'],
+    standalone: false
 })
 
 export class AuthorListComponent{

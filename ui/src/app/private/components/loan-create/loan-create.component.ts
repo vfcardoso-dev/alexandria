@@ -22,7 +22,8 @@ export interface LoanForm {
 @Component({
     selector: 'loan-create',
     templateUrl: './loan-create.component.html',
-    styleUrls: ['./loan-create.component.scss']
+    styleUrls: ['./loan-create.component.scss'],
+    standalone: false
 })
 
 export class LoanCreateComponent implements OnInit{

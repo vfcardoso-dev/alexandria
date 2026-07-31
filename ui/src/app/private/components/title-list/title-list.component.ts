@@ -18,6 +18,7 @@ export interface TitleGridModel{
     selector: 'title-list',
     templateUrl: './title-list.component.html',
     styleUrls: ['./title-list.component.scss'],
+    standalone: false
 })
 
 export class TitleListComponent implements OnInit{

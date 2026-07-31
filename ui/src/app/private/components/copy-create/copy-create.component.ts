@@ -15,7 +15,8 @@ export interface CopyForm {
 @Component({
     selector: 'copy-create',
     templateUrl: './copy-create.component.html',
-    styleUrls: ['./copy-create.component.scss']
+    styleUrls: ['./copy-create.component.scss'],
+    standalone: false
 })
 
 export class CopyCreateComponent implements OnInit{

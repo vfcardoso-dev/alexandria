@@ -22,6 +22,7 @@ export interface LoanGridModel{
     selector: 'loan-list',
     templateUrl: './loan-list.component.html',
     styleUrls: ['./loan-list.component.scss'],
+    standalone: false
 })
 export class LoanListComponent implements AfterViewInit {
 

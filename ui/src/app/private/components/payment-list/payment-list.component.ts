@@ -15,6 +15,7 @@ export interface PaymentGridListModel {
     selector: 'payment-list',
     templateUrl: './payment-list.component.html',
     styleUrls: ['./payment-list.component.scss'],
+    standalone: false
 })
 export class PaymentListComponent implements OnInit {
     

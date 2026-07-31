@@ -10,7 +10,8 @@ import { environment } from "src/environments/environment";
     selector: 'author-insert-dialog',
     templateUrl: 'author-insert-dialog.component.html',
     styleUrls: ['author-insert-dialog.component.scss'],
-  })
+    standalone: false
+})
   export class AuthorInsertDialog implements OnInit{
 
   public form = this.formBuilder.group({

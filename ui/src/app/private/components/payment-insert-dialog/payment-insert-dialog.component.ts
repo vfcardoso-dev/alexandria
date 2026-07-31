@@ -7,7 +7,8 @@ import { MAT_DIALOG_DATA } from "@angular/material/dialog";
     selector: 'payment-insert-dialog',
     templateUrl: 'payment-insert-dialog.component.html',
     styleUrls: ['payment-insert-dialog.component.scss'],
-  })
+    standalone: false
+})
   export class PaymentInsertDialog {
     
     public form = this.formBuilder.group({

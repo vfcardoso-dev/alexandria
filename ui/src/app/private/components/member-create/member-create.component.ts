@@ -17,7 +17,8 @@ export interface MemberForm {
 @Component({
     selector: 'member-create',
     templateUrl: './member-create.component.html',
-    styleUrls: ['./member-create.component.scss']
+    styleUrls: ['./member-create.component.scss'],
+    standalone: false
 })
 
 export class MemberCreateComponent implements OnInit{

@@ -16,8 +16,8 @@ export interface UserForm {
 @Component({
     selector: 'usuario-create',
     templateUrl: './usuario-create.component.html',
-    styleUrls: ['./usuario-create.component.scss']
-
+    styleUrls: ['./usuario-create.component.scss'],
+    standalone: false
 })
 
 export class UsuarioCreateComponent implements OnInit{

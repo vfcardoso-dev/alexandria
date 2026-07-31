@@ -17,6 +17,7 @@ export interface CopyListModel{
     selector: 'copy-list',
     templateUrl: './copy-list.component.html',
     styleUrls: ['./copy-list.component.scss'],
+    standalone: false
 })
 export class CopyListComponent implements OnInit{
 

@@ -17,6 +17,7 @@ export interface UserGridModel {
     selector: 'usuarios',
     templateUrl: './usuarios.component.html',
     styleUrls: ['./usuarios.component.scss'],
+    standalone: false
 })
 
 

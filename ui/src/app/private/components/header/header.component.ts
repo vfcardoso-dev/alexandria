@@ -5,7 +5,8 @@ import { HeaderApi } from "./header.api";
     selector: 'header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    providers: [HeaderApi]
+    providers: [HeaderApi],
+    standalone: false
 })
 export class HeaderComponent implements OnInit {
     public user: any;

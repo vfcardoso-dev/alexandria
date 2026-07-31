@@ -5,7 +5,8 @@ import { Router } from "@angular/router";
 @Component({
     selector: 'main',
     template: `<p>Logado!</p><br/>
-                <button mat-flat-button color="primary" (click)="logout()">Logout</button>`
+                <button mat-flat-button color="primary" (click)="logout()">Logout</button>`,
+    standalone: false
 })
 export class MainComponent {
 

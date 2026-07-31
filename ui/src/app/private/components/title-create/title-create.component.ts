@@ -15,7 +15,8 @@ export interface TitleForm {
 @Component({
     selector: 'title-create',
     templateUrl: './title-create.component.html',
-    styleUrls: ['./title-create.component.scss']
+    styleUrls: ['./title-create.component.scss'],
+    standalone: false
 })
 
 export class TitleCreateComponent implements OnInit{
