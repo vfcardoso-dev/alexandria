@@ -4,9 +4,7 @@ import com.andurasoftware.alexandria.business.domain.read.models.grid.MemberGrid
 import com.andurasoftware.alexandria.business.domain.read.repositories.base.MemberGridReadRepository;
 import com.andurasoftware.alexandria.business.domain.write.aggregates.MemberAggregate;
 import com.andurasoftware.alexandria.business.domain.write.repositories.base.MemberRepository;
-import com.andurasoftware.alexandria.business.domain.write.states.AuthorState;
 import com.andurasoftware.alexandria.business.domain.write.states.MemberState;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,8 +32,9 @@ public class MemberController {
         return ResponseEntity.ok(memberGridModelList);
     }
 
+    //TODO: Reimplementar validação com @NotNull
     @RequestMapping(value = "/api/member/add", method = RequestMethod.POST)
-    public ResponseEntity<?> add(@RequestBody @NotNull MemberState memberState) {
+    public ResponseEntity<?> add(@RequestBody MemberState memberState) {
         memberState.setVersion(new Date());
         MemberAggregate memberAggregate = new MemberAggregate(memberState);
         this.memberRepository.save(memberAggregate);

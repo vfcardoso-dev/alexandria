@@ -5,9 +5,7 @@ import com.andurasoftware.alexandria.business.domain.read.repositories.base.Titl
 import com.andurasoftware.alexandria.business.domain.write.aggregates.AuthorAggregate;
 import com.andurasoftware.alexandria.business.domain.write.aggregates.TitleAggregate;
 import com.andurasoftware.alexandria.business.domain.write.repositories.base.TitleRepository;
-import com.andurasoftware.alexandria.business.domain.write.states.AuthorState;
 import com.andurasoftware.alexandria.business.domain.write.states.TitleState;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,8 +34,9 @@ public class TitleController {
         return ResponseEntity.ok(titleModelList);
     }
 
+    //TODO: Reimplementar validação com @NotNull
     @RequestMapping(value = "/api/title/add", method = RequestMethod.POST)
-    public ResponseEntity<?> add(@RequestBody @NotNull TitleState titleState) {
+    public ResponseEntity<?> add(@RequestBody TitleState titleState) {
         titleState.setVersion(new Date());
         TitleAggregate titleAggregate = new TitleAggregate(titleState);
         this.titleRepository.save(titleAggregate);

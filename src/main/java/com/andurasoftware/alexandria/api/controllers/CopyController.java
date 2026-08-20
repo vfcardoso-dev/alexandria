@@ -6,7 +6,6 @@ import com.andurasoftware.alexandria.business.domain.write.aggregates.CopyAggreg
 import com.andurasoftware.alexandria.business.domain.write.repositories.base.CopyRepository;
 import com.andurasoftware.alexandria.business.domain.write.states.CopyState;
 import com.andurasoftware.alexandria.business.domain.write.states.TitleState;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,8 +33,9 @@ public class CopyController {
         return ResponseEntity.ok(copyModelList);
     }
 
+    //TODO: Reimplementar validação com @NotNull
     @RequestMapping(value = "/api/copy/add", method = RequestMethod.POST)
-    public ResponseEntity<?> add(@RequestBody @NotNull CopyState copyState) {
+    public ResponseEntity<?> add(@RequestBody CopyState copyState) {
         CopyAggregate copyAggregate = new CopyAggregate(copyState);
         this.copyRepository.save(copyAggregate);
         return ResponseEntity.ok(copyAggregate.getState());
