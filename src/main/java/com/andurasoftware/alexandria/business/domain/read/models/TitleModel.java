@@ -2,10 +2,9 @@ package com.andurasoftware.alexandria.business.domain.read.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.Immutable;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -17,7 +16,6 @@ import java.util.UUID;
 public class TitleModel {
     @Id
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
     private UUID id;
     @Column
     private String name;

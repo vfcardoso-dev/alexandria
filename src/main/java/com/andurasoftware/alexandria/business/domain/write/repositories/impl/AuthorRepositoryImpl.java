@@ -5,9 +5,9 @@ import com.andurasoftware.alexandria.business.domain.write.aggregates.AuthorAggr
 import com.andurasoftware.alexandria.business.domain.write.repositories.custom.AuthorRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 @Repository
 public class AuthorRepositoryImpl implements AuthorRepositoryCustom {

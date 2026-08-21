@@ -3,7 +3,7 @@ package com.andurasoftware.alexandria.business.domain.read.repositories.impl;
 import com.andurasoftware.alexandria.business.domain.read.models.grid.AuthorGridModel;
 import com.andurasoftware.alexandria.business.domain.read.repositories.base.AuthorGridReadRepository;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

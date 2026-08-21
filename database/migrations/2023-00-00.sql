@@ -128,7 +128,7 @@ BEGIN
 	CREATE TABLE  [dbo].[payment]
 	(
 		[id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(),
-		[date] DATE NULL,
+		[date] DATETIME2(7) NULL,
 		[status] VARCHAR(50) NULL,
 		[version] DATETIME2(7) NULL
 	)

@@ -3,9 +3,8 @@ package com.andurasoftware.alexandria.business.domain.read.models.grid;
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.annotations.Immutable;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,7 +16,6 @@ public class LoanGridViewModel implements Model {
 
     @Id
     @Column(columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
     private UUID id;
 
     @Column
@@ -30,7 +28,6 @@ public class LoanGridViewModel implements Model {
     private Date returnDate;
 
     @Column(columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
     private UUID copyId;
 
     @Column

@@ -3,10 +3,9 @@ package com.andurasoftware.alexandria.business.domain.read.models;
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.Immutable;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -19,7 +18,6 @@ public class AuthorModel implements Model {
 
     @Id
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
     private UUID id;
     @Column
     private String name;

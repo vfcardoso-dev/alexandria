@@ -4,8 +4,8 @@ import com.andurasoftware.alexandria.business.domain.write.aggregates.LoanAggreg
 import com.andurasoftware.alexandria.business.domain.write.repositories.custom.LoanRepositoryCustom;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Repository
 public class LoanRepositoryImpl implements LoanRepositoryCustom {

@@ -1,52 +1,30 @@
 package com.andurasoftware.alexandria.business.domain.read.models.grid;
 
-import com.andurasoftware.alexandria.business.common.interfaces.Model;
+import com.andurasoftware.alexandria.business.common.base.BaseModel;
 import org.hibernate.annotations.Immutable;
-import org.hibernate.annotations.Type;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
-import java.util.UUID;
 
 @Immutable
 @Entity
 @Table(name="[payment]")
-public class PaymentGridModel implements Model {
-
-    @Id
-    @Column(columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
-    private UUID id;
+public class PaymentGridModel extends BaseModel {
 
     @Column(name = "[date]")
-    private Date date;
+    private LocalDateTime date;
 
     @Column
     private String status;
 
-    @Column
-    private Date version;
+    public LocalDateTime getDate() { return date;  }
 
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
-
-    @Override
-    public void setId(UUID id) {  this.id = id; }
-
-    public Date getDate() { return date;  }
-
-    public void setDate(Date date) { this.date = date; }
+    public void setDate(LocalDateTime date) { this.date = date; }
 
     public String getStatus() { return status; }
 
     public void setStatus(String status) { this.status = status; }
 
-    public Date getVersion() { return version; }
-
-    public void setVersion(Date version) { this.version = version; }
 }

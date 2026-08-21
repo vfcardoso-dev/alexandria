@@ -3,11 +3,11 @@ package com.andurasoftware.alexandria.business.security.write.states;
 import com.andurasoftware.alexandria.business.common.interfaces.State;
 import com.andurasoftware.alexandria.business.security.shared.valueobjects.SecurityRole;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
-import static javax.persistence.EnumType.STRING;
+import static jakarta.persistence.EnumType.STRING;
 
 @Entity
 @Table(name="[user]")

@@ -4,11 +4,11 @@ import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import com.andurasoftware.alexandria.business.security.shared.valueobjects.SecurityRole;
 import org.springframework.data.annotation.Immutable;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
-import static javax.persistence.EnumType.STRING;
+import static jakarta.persistence.EnumType.STRING;
 
 @Immutable
 @Entity

@@ -3,8 +3,8 @@ package com.andurasoftware.alexandria.business.security.read.repositories.impl;
 import com.andurasoftware.alexandria.business.security.read.models.UserGridModel;
 import com.andurasoftware.alexandria.business.security.read.repositories.base.UserGridReadRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 public class UserGridReadRepositoryImpl implements UserGridReadRepository {

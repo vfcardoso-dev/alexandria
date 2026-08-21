@@ -2,7 +2,7 @@ package com.andurasoftware.alexandria.business.domain.write.states;
 
 import com.andurasoftware.alexandria.business.common.interfaces.State;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

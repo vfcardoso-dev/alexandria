@@ -1,10 +1,9 @@
 package com.andurasoftware.alexandria.business.domain.read.models.grid;
 
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.Immutable;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.UUID;
 
 @Immutable
@@ -14,7 +13,6 @@ public class AuthorGridModel implements Model {
 
     @Id
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
     private UUID id;
     @Column
     private String name;

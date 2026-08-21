@@ -3,8 +3,8 @@ package com.andurasoftware.alexandria.business.domain.read.repositories.impl;
 import com.andurasoftware.alexandria.business.domain.read.models.grid.MemberGridModel;
 import com.andurasoftware.alexandria.business.domain.read.repositories.base.MemberGridReadRepository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
 public class MemberGridReadRepositoryImpl implements MemberGridReadRepository {

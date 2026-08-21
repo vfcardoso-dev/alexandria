@@ -1,9 +1,8 @@
 package com.andurasoftware.alexandria.business.domain.write.states;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.andurasoftware.alexandria.business.common.interfaces.State;
-import org.hibernate.annotations.Type;
 
 import java.util.Date;
 import java.util.UUID;
@@ -15,14 +14,12 @@ public class CopyState implements State {
     @Id
     @GeneratedValue
     @Column(name = "id", columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
     private UUID id;
 
     @Column
     private String code;
 
     @Column(name = "title_id", columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
     private UUID titleId;
 
     @Column
