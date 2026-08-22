@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @MappedSuperclass
 public abstract class BaseEntity {
-
     @Id
     @GeneratedValue
     @Column(name = "id", columnDefinition = "uniqueidentifier")

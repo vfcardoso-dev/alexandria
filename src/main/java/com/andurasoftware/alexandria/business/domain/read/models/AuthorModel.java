@@ -1,7 +1,9 @@
 package com.andurasoftware.alexandria.business.domain.read.models;
 
+import com.andurasoftware.alexandria.business.common.base.BaseModel;
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Immutable;
 
@@ -13,12 +15,8 @@ import java.util.UUID;
 @Immutable
 @Entity
 @Table(name="[author]")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class AuthorModel implements Model {
+public class AuthorModel extends BaseModel {
 
-    @Id
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID id;
     @Column
     private String name;
     @Column
@@ -26,23 +24,14 @@ public class AuthorModel implements Model {
     @Column
     private String pseudonym;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany()
     @JoinTable(
             name = "[author_title]",
             joinColumns = { @JoinColumn(name = "author_id") },
             inverseJoinColumns = { @JoinColumn(name = "title_id") }
     )
+    @JsonIgnore
     Set<TitleModel> titleSet = new HashSet<>();
-
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
-
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

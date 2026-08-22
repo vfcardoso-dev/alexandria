@@ -1,33 +1,23 @@
 package com.andurasoftware.alexandria.business.domain.read.models;
 
+import com.andurasoftware.alexandria.business.common.base.BaseModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Immutable;
 
 import jakarta.persistence.*;
-import java.util.UUID;
 
 @Immutable
 @Entity
 @Table(name="[copy]")
-public class CopyModel {
-    @Id
-    @GeneratedValue
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID id; //TODO: abstrair
+public class CopyModel extends BaseModel {
 
     @Column
     private String code;
 
-    @ManyToOne(fetch = FetchType.EAGER,  cascade=CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name="title_id")
+    @JsonIgnore
     private TitleModel titleModel;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getCode() {
         return this.code;

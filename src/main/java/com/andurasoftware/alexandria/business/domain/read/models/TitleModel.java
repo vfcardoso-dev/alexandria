@@ -1,5 +1,6 @@
 package com.andurasoftware.alexandria.business.domain.read.models;
 
+import com.andurasoftware.alexandria.business.common.base.BaseModel;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Immutable;
@@ -12,26 +13,15 @@ import java.util.UUID;
 @Immutable
 @Entity
 @Table(name="[title]")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class TitleModel {
-    @Id
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID id;
+public class TitleModel extends BaseModel {
+
     @Column
     private String name;
     @ManyToMany(mappedBy = "titleSet")
     private Set<AuthorModel> authorSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "titleModel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "titleModel")
     private Set<CopyModel> copySet = new HashSet<>();
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
