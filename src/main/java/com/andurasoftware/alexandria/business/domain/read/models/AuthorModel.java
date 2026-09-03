@@ -1,16 +1,12 @@
 package com.andurasoftware.alexandria.business.domain.read.models;
 
 import com.andurasoftware.alexandria.business.common.base.BaseModel;
-import com.andurasoftware.alexandria.business.common.interfaces.Model;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Immutable;
 
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Immutable
 @Entity

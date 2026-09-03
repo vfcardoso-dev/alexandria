@@ -19,6 +19,8 @@ public class PaymentGridModel extends BaseModel {
     @Column
     private String status;
 
+    //region Getters and Setters
+
     public LocalDateTime getDate() { return date;  }
 
     public void setDate(LocalDateTime date) { this.date = date; }
@@ -26,5 +28,7 @@ public class PaymentGridModel extends BaseModel {
     public String getStatus() { return status; }
 
     public void setStatus(String status) { this.status = status; }
+
+    //endregion
 
 }
