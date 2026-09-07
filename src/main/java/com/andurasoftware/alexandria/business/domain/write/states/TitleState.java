@@ -1,21 +1,14 @@
 package com.andurasoftware.alexandria.business.domain.write.states;
 
-import com.andurasoftware.alexandria.business.common.interfaces.State;
-
+import com.andurasoftware.alexandria.business.common.base.BaseState;
 import jakarta.persistence.*;
-import java.util.Date;
+
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name="[title]")
-public class TitleState implements State {
-
-    @Id
-    @GeneratedValue
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID id;
+public class TitleState extends BaseState {
 
     @Column
     private String name;
@@ -27,11 +20,6 @@ public class TitleState implements State {
             inverseJoinColumns = { @JoinColumn(name = "author_id") }
     )
     Set<AuthorState> authors = new HashSet<>();
-
-    @Override
-    public UUID getId() {
-       return this.id;
-    }
 
     public String getName() {
         return name;
@@ -49,17 +37,4 @@ public class TitleState implements State {
         this.authors = authors;
     }
 
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    @Override
-    public Date getVersion() {
-        return null;
-    }
-
-    @Override
-    public void setVersion(Date version) {
-    }
 }

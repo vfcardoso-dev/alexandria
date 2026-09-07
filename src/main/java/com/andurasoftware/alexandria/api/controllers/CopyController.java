@@ -1,6 +1,8 @@
 package com.andurasoftware.alexandria.api.controllers;
 
 import com.andurasoftware.alexandria.business.domain.read.models.CopyModel;
+import com.andurasoftware.alexandria.business.domain.read.models.grid.CopyGridModel;
+import com.andurasoftware.alexandria.business.domain.read.repositories.base.CopyGridReadRepository;
 import com.andurasoftware.alexandria.business.domain.read.repositories.base.CopyReadRepository;
 import com.andurasoftware.alexandria.business.domain.write.aggregates.CopyAggregate;
 import com.andurasoftware.alexandria.business.domain.write.repositories.base.CopyRepository;
@@ -21,7 +23,7 @@ import java.util.List;
 public class CopyController {
 
     @Autowired
-    private CopyReadRepository copyReadRepository;
+    private CopyGridReadRepository copyGridReadRepository;
 
     @Autowired
     private CopyRepository copyRepository;
@@ -29,7 +31,7 @@ public class CopyController {
     @PreAuthorize("permitAll()")
     @RequestMapping(value = "/api/copy/grid/list.json", method = RequestMethod.POST)
     public ResponseEntity<?> displayAll() {
-        List<CopyModel> copyModelList = this.copyReadRepository.findAll();
+        List<CopyGridModel> copyModelList = this.copyGridReadRepository.findAll();
         return ResponseEntity.ok(copyModelList);
     }
 

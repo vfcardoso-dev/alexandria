@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +38,6 @@ public class TitleController {
     //TODO: Reimplementar validação com @NotNull
     @RequestMapping(value = "/api/title/add", method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody TitleState titleState) {
-        titleState.setVersion(new Date());
         TitleAggregate titleAggregate = new TitleAggregate(titleState);
         this.titleRepository.save(titleAggregate);
         return ResponseEntity.ok(titleAggregate.getState());

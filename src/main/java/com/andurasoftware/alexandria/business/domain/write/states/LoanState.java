@@ -1,15 +1,14 @@
 package com.andurasoftware.alexandria.business.domain.write.states;
 
-import com.andurasoftware.alexandria.business.common.interfaces.State;
-import org.hibernate.annotations.Type;
 
+import com.andurasoftware.alexandria.business.common.base.BaseState;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(name="[loan]")
-public class LoanState implements State {
+public class LoanState extends BaseState {
 
     @Id
     @GeneratedValue
@@ -25,14 +24,14 @@ public class LoanState implements State {
     private Date returnDate;
 
     @ManyToOne
-    @JoinColumn(name="copy_id", columnDefinition = "uniqueidentifier")
+    @JoinColumn(name = "copy_id", columnDefinition = "uniqueidentifier")
     private CopyState copy;
 
     @ManyToOne
-    @JoinColumn(name="member_id", columnDefinition = "uniqueidentifier")
+    @JoinColumn(name = "member_id", columnDefinition = "uniqueidentifier")
     private MemberState member;
 
-
+    //region Getters and Setters
     public Date getDate() {
         return date;
     }
@@ -73,22 +72,6 @@ public class LoanState implements State {
         this.member = member;
     }
 
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
+    //endregion
 
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    @Override
-    public Date getVersion() {
-        return null;
-    }
-
-    @Override
-    public void setVersion(Date version) {
-    }
 }

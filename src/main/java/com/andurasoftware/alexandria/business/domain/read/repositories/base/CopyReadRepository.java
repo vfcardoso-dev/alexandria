@@ -10,4 +10,6 @@ public interface CopyReadRepository extends Repository<CopyModel, UUID>{
 
     //TODO: Abstrair
     List<CopyModel> findAll();
+
+
 }

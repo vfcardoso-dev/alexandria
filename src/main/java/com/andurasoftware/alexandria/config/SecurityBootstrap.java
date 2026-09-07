@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Component
@@ -52,7 +52,7 @@ public class SecurityBootstrap implements ApplicationListener<ApplicationReadyEv
         user.setName(name);
         user.setEmail(email);
         user.setPassword(this.encryptHelper.encryptPassword(password));
-        user.setVersion(new Date());
+        user.setVersion(LocalDateTime.now());
         user.setEnabled(true);
         user.setRole(authority);
 

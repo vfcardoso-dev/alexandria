@@ -1,19 +1,21 @@
 package com.andurasoftware.alexandria.business.domain.read.models.grid;
 
-import com.andurasoftware.alexandria.business.common.interfaces.Model;
+import com.andurasoftware.alexandria.business.common.base.BaseModel;
+import com.andurasoftware.alexandria.business.domain.read.models.AuthorModel;
+import com.andurasoftware.alexandria.business.domain.read.models.TitleModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Immutable;
 
 import jakarta.persistence.*;
-import java.util.UUID;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Immutable
 @Entity
 @Table(name="[author]")
-public class AuthorGridModel implements Model {
+public class AuthorGridModel extends BaseModel {
 
-    @Id
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID id;
     @Column
     private String name;
     @Column
@@ -21,15 +23,15 @@ public class AuthorGridModel implements Model {
     @Column
     private String pseudonym;
 
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
+    @ManyToMany()
+    @JoinTable(
+            name = "[author_title]",
+            joinColumns = { @JoinColumn(name = "author_id") },
+            inverseJoinColumns = { @JoinColumn(name = "title_id") }
+    )
+    @JsonIgnore
+    Set<TitleGridModel> titleSet = new HashSet<>();
 
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

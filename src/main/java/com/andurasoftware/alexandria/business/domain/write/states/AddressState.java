@@ -1,19 +1,12 @@
 package com.andurasoftware.alexandria.business.domain.write.states;
 
-import com.andurasoftware.alexandria.business.common.interfaces.State;
+import com.andurasoftware.alexandria.business.common.base.BaseAuditableState;
 
 import jakarta.persistence.*;
-import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Table(name="[address]")
-public class AddressState implements State {
-
-    @Id
-    @GeneratedValue
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID id;
+public class AddressState extends BaseAuditableState {
 
     @Column(nullable = false)
     private String address;
@@ -33,14 +26,7 @@ public class AddressState implements State {
     @Column
     private String postalCode;
 
-    private Date version;
-
-
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
-
+    //region Getters and Setters
     public String getAddress() {
         return address;
     }
@@ -89,18 +75,6 @@ public class AddressState implements State {
         this.postalCode = postalCode;
     }
 
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    //endregion
 
-    @Override
-    public Date getVersion() {
-        return this.version;
-    }
-
-    @Override
-    public void setVersion(Date version) {
-        this.version = version;
-    }
 }

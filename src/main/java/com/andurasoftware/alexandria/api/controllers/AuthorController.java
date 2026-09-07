@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +35,7 @@ public class AuthorController {
     //TODO: Reimplementar validação com @NotNull
     @RequestMapping(value = "/api/author/add", method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody AuthorState authorState) {
-        authorState.setVersion(new Date());
+        authorState.setVersion(LocalDateTime.now());
         AuthorAggregate authorAggregate = new AuthorAggregate(authorState);
         this.authorRepository.save(authorAggregate);
         return ResponseEntity.ok(authorAggregate.getState());
@@ -44,7 +45,7 @@ public class AuthorController {
     //TODO: Reimplementar validação com @NotNull
     @RequestMapping(value = "/api/author/update", method = RequestMethod.POST)
     public ResponseEntity<?> update(@RequestBody AuthorState authorState) {
-        authorState.setVersion(new Date());
+        authorState.setVersion(LocalDateTime.now());
         Optional<AuthorState> opt = this.authorRepository.findById(authorState.getId());
         if(opt.isEmpty()){
             return (ResponseEntity<?>) ResponseEntity.notFound();

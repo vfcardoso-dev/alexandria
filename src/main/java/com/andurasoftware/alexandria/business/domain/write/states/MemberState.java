@@ -1,18 +1,12 @@
 package com.andurasoftware.alexandria.business.domain.write.states;
 
-import com.andurasoftware.alexandria.business.common.interfaces.State;
+import com.andurasoftware.alexandria.business.common.base.BaseAuditableState;
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Table(name="[member]")
-public class MemberState implements State{
-
-    @Id
-    @GeneratedValue
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID id;
+public class MemberState extends BaseAuditableState {
 
     @Column(nullable = false)
     private String name;
@@ -36,29 +30,8 @@ public class MemberState implements State{
     @Column
     private String occupation;
 
-    @Column
-    private Date version;
 
-
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
-
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    @Override
-    public Date getVersion() {
-        return this.version;
-    }
-
-    @Override
-    public void setVersion(Date version) {
-        this.version = version;
-    }
+    //region Getters and Setters
 
     public String getName() {
         return name;
@@ -115,4 +88,6 @@ public class MemberState implements State{
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
+
+    //endregion
 }

@@ -1,5 +1,6 @@
 package com.andurasoftware.alexandria.business.domain.read.models.grid;
 
+import com.andurasoftware.alexandria.business.common.base.BaseModel;
 import com.andurasoftware.alexandria.business.common.interfaces.Model;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.annotations.Immutable;
@@ -12,11 +13,7 @@ import java.util.UUID;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Entity
 @Table(name="[loan_grid_view]")
-public class LoanGridViewModel implements Model {
-
-    @Id
-    @Column(columnDefinition = "uniqueidentifier")
-    private UUID id;
+public class LoanGridViewModel extends BaseModel {
 
     @Column
     private Date date;
@@ -38,16 +35,6 @@ public class LoanGridViewModel implements Model {
 
     private String memberName;
 
-
-    @Override
-    public UUID getId() {
-        return this.id;
-    }
-
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public Date getDate() {
         return date;

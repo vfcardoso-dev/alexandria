@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class UserController {
 
     @RequestMapping(value = "/api/user/add", method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody UserState userState) {
-        userState.setVersion(new Date());
+        userState.setVersion(LocalDateTime.now());
         userState.setPassword(this.encryptHelper.encryptPassword(userState.getPassword()));
 
         UserAggregate userAggregate = new UserAggregate(userState);

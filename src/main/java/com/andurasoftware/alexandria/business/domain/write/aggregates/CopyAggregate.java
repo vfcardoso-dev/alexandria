@@ -3,6 +3,7 @@ package com.andurasoftware.alexandria.business.domain.write.aggregates;
 import com.andurasoftware.alexandria.business.common.interfaces.BaseAggregate;
 import com.andurasoftware.alexandria.business.domain.write.states.CopyState;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class CopyAggregate extends BaseAggregate<CopyState> {
@@ -12,6 +13,6 @@ public class CopyAggregate extends BaseAggregate<CopyState> {
     }
 
     public void setVersionToNow(){
-        this.state.setVersion(new Date());
+        this.state.setVersion(LocalDateTime.now());
     }
 }

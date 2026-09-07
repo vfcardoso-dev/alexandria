@@ -1,23 +1,15 @@
 package com.andurasoftware.alexandria.business.security.write.states;
 
-import com.andurasoftware.alexandria.business.common.interfaces.State;
+import com.andurasoftware.alexandria.business.common.base.BaseAuditableState;
 import com.andurasoftware.alexandria.business.security.shared.valueobjects.SecurityRole;
 
 import jakarta.persistence.*;
-import java.util.Date;
-import java.util.UUID;
 
 import static jakarta.persistence.EnumType.STRING;
 
 @Entity
 @Table(name="[user]")
-public class UserState implements State {
-
-    @Id
-    @GeneratedValue
-    @Column(name = "Id", columnDefinition = "uniqueidentifier")
-    private UUID id;
-
+public class UserState extends BaseAuditableState {
     @Column(nullable = false)
     private String password;
 
@@ -34,16 +26,8 @@ public class UserState implements State {
     @Column(nullable = false)
     private Boolean enabled = true;
 
-    @Version()
-    protected Date version;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    //region Getters and Setters
 
     public String getPassword() {
         return password;
@@ -85,11 +69,5 @@ public class UserState implements State {
         this.enabled = enabled;
     }
 
-    public Date getVersion() {
-        return version;
-    }
-
-    public void setVersion(Date version) {
-        this.version = version;
-    }
+    //endregion
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class MemberController {
     //TODO: Reimplementar validação com @NotNull
     @RequestMapping(value = "/api/member/add", method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody MemberState memberState) {
-        memberState.setVersion(new Date());
+        memberState.setVersion(LocalDateTime.now());
         MemberAggregate memberAggregate = new MemberAggregate(memberState);
         this.memberRepository.save(memberAggregate);
         return ResponseEntity.ok(memberAggregate.getState());
