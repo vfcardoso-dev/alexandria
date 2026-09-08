@@ -13,7 +13,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Component
 public class SecurityBootstrap implements ApplicationListener<ApplicationReadyEvent> {
@@ -48,7 +47,6 @@ public class SecurityBootstrap implements ApplicationListener<ApplicationReadyEv
         }
 
         UserState user = new UserState();
-        user.setId(UUID.randomUUID());
         user.setName(name);
         user.setEmail(email);
         user.setPassword(this.encryptHelper.encryptPassword(password));

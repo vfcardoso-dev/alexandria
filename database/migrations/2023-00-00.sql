@@ -1,5 +1,3 @@
-
-
 IF OBJECT_ID('dbo.user', 'U') IS NULL
 BEGIN
     CREATE TABLE  [dbo].[user]
