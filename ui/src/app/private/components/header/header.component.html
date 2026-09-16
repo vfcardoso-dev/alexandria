@@ -1,28 +1,17 @@
-<div class="header-wrapper">
-    <h1 routerLink="/app/main">Alexandria</h1>
+<button mat-icon-button *ngIf="isMobile" (click)="menuToggle.emit()" aria-label="Abrir menu de navegação">
+    <mat-icon>menu</mat-icon>
+</button>
 
-    <nav>
-        <a [matMenuTriggerFor]="biblioteca">Biblioteca</a>
-        <mat-menu #biblioteca="matMenu">
-            <button mat-menu-item routerLink="/app/library/author/list">Autores</button>
-            <button mat-menu-item routerLink="/app/library/titles/list">Títulos</button>
-            <button mat-menu-item routerLink="/app/library/copies/list">Exemplares</button>
-            <button mat-menu-item routerLink="/app/library/members/list">Membros</button>
-            <button mat-menu-item routerLink="/app/library/loans/list">Empréstimos</button>
-        </mat-menu>
-    
-        <a [matMenuTriggerFor]="financeiro">Financeiro</a>
-        <mat-menu #financeiro="matMenu">
-            <button mat-menu-item routerLink="/app/library/payment/list">Pagamentos</button>
-            <button mat-menu-item>Mensalidades</button>
-        </mat-menu>
-    
-        <a [matMenuTriggerFor]="seguranca">Segurança</a>
-        <mat-menu #seguranca="matMenu">
-            <button mat-menu-item routerLink="/app/seguranca/usuarios">Usuários</button>
-            <button mat-menu-item>Sessões ativas</button>
-        </mat-menu>
-    </nav>
+<span class="app-title" routerLink="/app/main">Alexandria</span>
 
-    <span>Usuário: {{ user?.username }}</span>
-</div>
+<span class="spacer"></span>
+
+<button mat-icon-button (click)="themeService.toggle()"
+    [attr.aria-label]="themeService.mode() === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'">
+    <mat-icon>{{ themeService.mode() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+</button>
+
+<span class="app-user" *ngIf="user">
+    <mat-icon>account_circle</mat-icon>
+    {{ user?.username }}
+</span>

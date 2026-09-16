@@ -5,7 +5,10 @@
         align-items: center;
         justify-content: space-between;
         height: 40px;
-        background-color: #ebebeb;
+        background-color: var(--mat-sys-surface-container-low);
+        color: var(--mat-sys-on-surface-variant);
+        border-top: 1px solid var(--mat-sys-outline-variant);
         padding: 0 30px;
+        font-size: 0.8rem;
     }
 }

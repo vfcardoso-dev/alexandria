@@ -1,9 +1,63 @@
-<section class="header">
-    <header></header>
-</section>
-<section class="content-wrapper">
-    <router-outlet></router-outlet>    
-</section>
-<section class="footer">
-    <footer></footer>
-</section>
+<mat-toolbar color="primary" class="app-toolbar">
+    <header [isMobile]="isMobile" (menuToggle)="sidenav.toggle()"></header>
+</mat-toolbar>
+
+<mat-sidenav-container class="app-container">
+    <mat-sidenav #sidenav class="app-sidenav"
+        [mode]="isMobile ? 'over' : 'side'"
+        [opened]="!isMobile"
+        [fixedInViewport]="isMobile">
+        <mat-nav-list>
+            <h3 matSubheader>Biblioteca</h3>
+            <a mat-list-item routerLink="/app/library/author/list" routerLinkActive="active-link" (click)="isMobile && sidenav.close()">
+                <mat-icon matListItemIcon>person</mat-icon>
+                <span matListItemTitle>Autores</span>
+            </a>
+            <a mat-list-item routerLink="/app/library/titles/list" routerLinkActive="active-link" (click)="isMobile && sidenav.close()">
+                <mat-icon matListItemIcon>menu_book</mat-icon>
+                <span matListItemTitle>Títulos</span>
+            </a>
+            <a mat-list-item routerLink="/app/library/copies/list" routerLinkActive="active-link" (click)="isMobile && sidenav.close()">
+                <mat-icon matListItemIcon>library_books</mat-icon>
+                <span matListItemTitle>Exemplares</span>
+            </a>
+            <a mat-list-item routerLink="/app/library/members/list" routerLinkActive="active-link" (click)="isMobile && sidenav.close()">
+                <mat-icon matListItemIcon>groups</mat-icon>
+                <span matListItemTitle>Membros</span>
+            </a>
+            <a mat-list-item routerLink="/app/library/loans/list" routerLinkActive="active-link" (click)="isMobile && sidenav.close()">
+                <mat-icon matListItemIcon>assignment_return</mat-icon>
+                <span matListItemTitle>Empréstimos</span>
+            </a>
+
+            <mat-divider></mat-divider>
+            <h3 matSubheader>Financeiro</h3>
+            <a mat-list-item routerLink="/app/library/payment/list" routerLinkActive="active-link" (click)="isMobile && sidenav.close()">
+                <mat-icon matListItemIcon>payments</mat-icon>
+                <span matListItemTitle>Pagamentos</span>
+            </a>
+            <a mat-list-item [disabled]="true">
+                <mat-icon matListItemIcon>event_repeat</mat-icon>
+                <span matListItemTitle>Mensalidades</span>
+            </a>
+
+            <mat-divider></mat-divider>
+            <h3 matSubheader>Segurança</h3>
+            <a mat-list-item routerLink="/app/seguranca/usuarios" routerLinkActive="active-link" (click)="isMobile && sidenav.close()">
+                <mat-icon matListItemIcon>admin_panel_settings</mat-icon>
+                <span matListItemTitle>Usuários</span>
+            </a>
+            <a mat-list-item [disabled]="true">
+                <mat-icon matListItemIcon>devices</mat-icon>
+                <span matListItemTitle>Sessões ativas</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="app-content">
+        <main class="app-main">
+            <router-outlet></router-outlet>
+        </main>
+        <footer></footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

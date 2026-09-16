@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
-    selector: 'main',
+    selector: 'app-dashboard',
     template: `<p>Logado!</p><br/>
                 <button mat-flat-button color="primary" (click)="logout()">Logout</button>`,
     standalone: false

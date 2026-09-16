@@ -1,8 +1,50 @@
 :host {
-    .content-wrapper {
-        height: calc(100vh - 110px);
-        padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--mat-sys-surface);
+
+    .app-toolbar {
+        flex: none;
+        z-index: 3;
+        background-color: var(--mat-sys-primary);
+        color: var(--mat-sys-on-primary);
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+    }
+
+    .app-container {
+        flex: 1 1 auto;
+        background-color: var(--mat-sys-surface);
+    }
+
+    .app-sidenav {
+        width: 260px;
+        background-color: var(--mat-sys-surface-container-low);
+        border-right: 1px solid var(--mat-sys-outline-variant);
+    }
+
+    .app-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: var(--mat-sys-surface);
+    }
+
+    .app-main {
+        flex: 1 1 auto;
         overflow-y: auto;
         overflow-x: hidden;
+        padding: 24px 32px;
+    }
+
+    ::ng-deep .active-link {
+        background-color: var(--mat-sys-secondary-container);
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 599px) {
+    :host .app-main {
+        padding: 12px 16px;
     }
 }
