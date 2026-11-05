@@ -21,6 +21,7 @@
         width: 260px;
         background-color: var(--mat-sys-surface-container-low);
         border-right: 1px solid var(--mat-sys-outline-variant);
+        border-radius: 0;
     }
 
     .app-content {
@@ -37,9 +38,29 @@
         padding: 24px 32px;
     }
 
-    ::ng-deep .active-link {
-        background-color: var(--mat-sys-secondary-container);
-        font-weight: 600;
+    ::ng-deep .app-sidenav a.active-link {
+        background-color: transparent !important;
+        border-radius: 0;
+    }
+
+    ::ng-deep .app-sidenav .mdc-list-item {
+        border-radius: 0 !important;
+    }
+
+    ::ng-deep .app-sidenav a[disabled],
+    ::ng-deep .app-sidenav .mdc-list-item--disabled {
+        background-color: transparent !important;
+        background: transparent !important;
+        --mdc-list-list-item-container-color: transparent;
+        --mdc-list-list-item-selected-container-color: transparent;
+        --mat-list-active-indicator-color: transparent;
+        --mat-list-item-hover-state-layer-color: transparent;
+        --mat-list-item-focus-state-layer-color: transparent;
+    }
+
+    ::ng-deep .app-sidenav a[disabled]::before,
+    ::ng-deep .app-sidenav .mdc-list-item--disabled::before {
+        background-color: transparent !important;
     }
 }
 
